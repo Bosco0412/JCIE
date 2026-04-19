@@ -38,11 +38,11 @@ export const siteConfig = {
   title: 'SZU-UoS JCIE | Joint Centre for Innovation & Engineering',
   description:
     'SZU-UoS JCIE 是一个聚焦 AI for EDA 与 AI for LCA 的联合实验室。我们通过真实项目、真实论文与真实开源成果培养能够把想法做成结果的人。',
-  url: 'https://example.com',
+  url: 'https://jcie.vercel.app',
   contactEmail: 'baowen435@gmail.com',
   applyFormUrl:
     'mailto:baowen435@gmail.com?subject=%E3%80%90Join%20JCIE%E3%80%91%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97',
-  githubUrl: '#',
+  githubUrl: 'https://github.com/Bosco0412/JCIE',
   location: 'Shenzhen, China',
 };
 
