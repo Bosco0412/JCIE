@@ -12,12 +12,12 @@ export default function ResearchPage() {
 
       <div className="mt-12 grid gap-6 lg:grid-cols-2">
         {researchAreas.map((area) => (
-          <article key={area.slug} className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <h2 className="text-2xl font-semibold text-white">{area.title}</h2>
-            <p className="mt-4 text-base leading-8 text-slate-300">{area.summary}</p>
-            <ul className="mt-6 space-y-3 text-sm leading-7 text-slate-200">
+          <article key={area.slug} className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+            <h2 className="text-2xl font-semibold text-slate-950">{area.title}</h2>
+            <p className="mt-4 text-base leading-8 text-slate-600">{area.summary}</p>
+            <ul className="mt-6 space-y-3 text-sm leading-7 text-slate-700">
               {area.bullets.map((bullet) => (
-                <li key={bullet} className="rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3">
+                <li key={bullet} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
                   {bullet}
                 </li>
               ))}

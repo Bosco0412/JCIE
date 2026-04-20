@@ -42,8 +42,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full bg-slate-950 text-white">
-        <div className="relative flex min-h-screen flex-col overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.16),_transparent_28%),linear-gradient(180deg,_#020617_0%,_#020617_48%,_#0f172a_100%)]">
+      <body className="min-h-full bg-slate-50 text-slate-950">
+        <div className="relative flex min-h-screen flex-col overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(14,116,144,0.12),_transparent_30%),linear-gradient(180deg,_#ffffff_0%,_#f7f9fc_52%,_#eef4f8_100%)]">
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />

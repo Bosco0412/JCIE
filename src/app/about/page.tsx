@@ -8,7 +8,7 @@ export default function AboutPage() {
 
       <section className="mt-12 grid gap-6 lg:grid-cols-3">
         {mission.points.map((point) => (
-          <article key={point} className="rounded-3xl border border-white/10 bg-white/5 p-6 text-base leading-8 text-slate-200">
+          <article key={point} className="rounded-3xl border border-slate-200 bg-white p-6 text-base leading-8 text-slate-700 shadow-sm">
             {point}
           </article>
         ))}
@@ -22,9 +22,9 @@ export default function AboutPage() {
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {beliefs.map((item) => (
-            <article key={item.title} className="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
-              <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-              <p className="mt-4 text-base leading-8 text-slate-300">{item.description}</p>
+            <article key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-semibold text-slate-950">{item.title}</h3>
+              <p className="mt-4 text-base leading-8 text-slate-600">{item.description}</p>
             </article>
           ))}
         </div>
@@ -38,9 +38,9 @@ export default function AboutPage() {
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
           {roles.map((role) => (
-            <article key={role.title} className="rounded-3xl border border-white/10 bg-white/5 p-6">
-              <h3 className="text-lg font-semibold text-white">{role.title}</h3>
-              <p className="mt-3 text-base leading-8 text-slate-300">{role.description}</p>
+            <article key={role.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-slate-950">{role.title}</h3>
+              <p className="mt-3 text-base leading-8 text-slate-600">{role.description}</p>
             </article>
           ))}
         </div>
