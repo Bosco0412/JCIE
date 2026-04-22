@@ -1,5 +1,5 @@
-﻿import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { SectionHeading } from '@/components/section-heading';
 import { getSiteContent } from '@/content/site';
 import { isLocale, Locale } from '@/lib/i18n';
@@ -10,37 +10,150 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   const locale = lang as Locale;
   const content = getSiteContent(locale);
 
+  const overviewTitleZh = '我们是谁';
+  const overviewTitleEn = 'Who We are';
+  const overviewDescZh = 'JCIE 是深圳大学与南澳大学联合成立的研究中心，聚焦 AI + 工程真实问题。学生在这里做真实项目、真实论文和真实开源成果。';
+  const overviewDescEn = 'JCIE is a joint research centre between Shenzhen University and University of South Australia, focused on AI + engineering real-world problems. Students here build real projects, real papers, and real open-source outcomes.';
+
   return (
-    <div>
-      <section className="mx-auto grid w-full max-w-7xl gap-14 px-6 py-18 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-24">
-        <div className="space-y-8">
-          <span className="inline-flex rounded-full border border-cyan-700/15 bg-cyan-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-800">{content.hero.eyebrow}</span>
-          <div className="space-y-6">
-            <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-slate-950 sm:text-6xl">{content.hero.title}</h1>
-            <p className="max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">{content.hero.subtitle}</p>
+    <div className="mx-auto w-full max-w-6xl px-6 py-16">
+      {/* Hero */}
+      <section className="mb-16">
+        <div className="max-w-3xl">
+          <h1 className="text-4xl font-semibold text-slate-900 lg:text-5xl">
+            {locale === 'zh' ? '把真正有价值的研究做出来' : 'Build meaningful research that survives outside the lab'}
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-slate-600">
+            {locale === 'zh'
+              ? '我们是一个做 AI + 工程真实问题研究的联合实验室。学生在这里做真实项目、真实论文和真实开源成果。'
+              : 'We are a joint lab working on real AI + engineering problems. Students here build real projects, real papers, and real open-source outcomes.'}
+          </p>
+          <div className="mt-8 flex gap-4">
+            <Link href={`/${locale}/join`} className="rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
+              {locale === 'zh' ? '申请加入' : 'Apply Now'}
+            </Link>
+            <Link href={`/${locale}/people`} className="rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:border-slate-400">
+              {locale === 'zh' ? '查看成员' : 'Meet the Team'}
+            </Link>
           </div>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <Link href={content.hero.primaryCta.href} className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-cyan-900">{content.hero.primaryCta.label}</Link>
-            <Link href={content.hero.secondaryCta.href} className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-cyan-700 hover:text-cyan-800">{content.hero.secondaryCta.label}</Link>
-          </div>
-        </div>
-        <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/70">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-800">{content.hero.snapshotLabel}</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-            {content.hero.stats.map((stat) => (
-              <div key={stat.label} className="rounded-3xl border border-slate-200 bg-slate-50 p-6"><div className="text-3xl font-semibold text-slate-950">{stat.value}</div><div className="mt-2 text-sm uppercase tracking-[0.18em] text-slate-500">{stat.label}</div></div>
-            ))}
-          </div>
-          <div className="mt-8 rounded-3xl border border-cyan-700/15 bg-cyan-50 p-6"><p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-800">{content.hero.coreLabel}</p><p className="mt-3 text-base leading-8 text-slate-700">{content.hero.coreText}</p></div>
         </div>
       </section>
-      <section id="mission" className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-8"><SectionHeading eyebrow={content.navigation[3].label} title={content.mission.title} description={content.mission.summary} /><div className="mt-10 grid gap-6 lg:grid-cols-3">{content.mission.points.map((point) => (<div key={point} className="rounded-3xl border border-slate-200 bg-white p-6 text-base leading-8 text-slate-700 shadow-sm">{point}</div>))}</div></section>
-      <section className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-8"><SectionHeading eyebrow={content.labels.beliefs} title={content.sections.beliefsTitle} description={content.sections.beliefsDescription} /><div className="mt-10 grid gap-6 lg:grid-cols-3">{content.beliefs.map((item) => (<article key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"><h3 className="text-xl font-semibold text-slate-950">{item.title}</h3><p className="mt-4 text-base leading-8 text-slate-600">{item.description}</p></article>))}</div></section>
-      <section id="tracks" className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-8"><SectionHeading eyebrow={content.labels.research} title={content.sections.researchTitle} description={content.sections.researchDescription} /><div className="mt-10 grid gap-6 lg:grid-cols-2">{content.researchAreas.map((area) => (<article key={area.slug} className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm"><h3 className="text-2xl font-semibold text-slate-950">{area.title}</h3><p className="mt-4 text-base leading-8 text-slate-600">{area.summary}</p><ul className="mt-6 space-y-3 text-sm leading-7 text-slate-700">{area.bullets.map((bullet) => (<li key={bullet} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">{bullet}</li>))}</ul></article>))}</div></section>
-      <section id="process" className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-8"><SectionHeading eyebrow={content.labels.process} title={content.sections.processTitle} description={content.sections.processDescription} /><div className="mt-10 grid gap-6 lg:grid-cols-2"><div className="space-y-5 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">{content.processSteps.map((step, index) => (<div key={step.title} className="flex gap-4"><div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-800 text-sm font-semibold text-white">{index + 1}</div><div><h3 className="text-lg font-semibold text-slate-950">{step.title}</h3><p className="mt-2 text-base leading-8 text-slate-600">{step.description}</p></div></div>))}</div><div className="grid gap-4">{content.roles.map((role) => (<article key={role.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"><h3 className="text-lg font-semibold text-slate-950">{role.title}</h3><p className="mt-3 text-base leading-8 text-slate-600">{role.description}</p></article>))}</div></div></section>
-      <section className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-8"><SectionHeading eyebrow={content.labels.outcome} title={content.sections.outcomeTitle} description={content.sections.outcomeDescription} /><div className="mt-10 grid gap-6 lg:grid-cols-3">{content.gains.map((gain) => (<article key={gain.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"><h3 className="text-xl font-semibold text-slate-950">{gain.title}</h3><p className="mt-4 text-base leading-8 text-slate-600">{gain.description}</p></article>))}</div></section>
-      <section className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-8"><div className="grid gap-6 lg:grid-cols-[1fr_1fr]"><div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm"><SectionHeading eyebrow={content.labels.join} title={content.sections.joinTitle} description={content.sections.joinDescription} /><div className="mt-8 space-y-4">{content.joinChecklist.map((item) => (<article key={item.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-5"><h3 className="text-lg font-semibold text-slate-950">{item.title}</h3><p className="mt-3 text-base leading-8 text-slate-600">{item.description}</p></article>))}</div></div><div className="rounded-[2rem] border border-cyan-700/15 bg-cyan-50 p-8"><p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-800">{content.joinPanel.eyebrow}</p><h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">{content.joinPanel.title}</h2><p className="mt-4 text-base leading-8 text-slate-700">{content.joinPanel.description}</p><div className="mt-8 flex flex-col gap-4 sm:flex-row"><Link href={`/${locale}/join`} className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-cyan-900">{content.joinPanel.primaryLabel}</Link><Link href={`/${locale}/research`} className="inline-flex items-center justify-center rounded-full border border-cyan-700/20 bg-white px-6 py-3 text-sm font-semibold text-cyan-900 shadow-sm transition hover:border-cyan-800">{content.joinPanel.secondaryLabel}</Link></div></div></div></section>
-      <section className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-8"><SectionHeading eyebrow={content.labels.updates} title={content.sections.updatesTitle} description={content.sections.updatesDescription} /><div className="mt-10 grid gap-6 lg:grid-cols-3">{content.updates.map((item) => (<article key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"><span className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-800">{item.tag}</span><h3 className="mt-4 text-xl font-semibold text-slate-950">{item.title}</h3><p className="mt-4 text-base leading-8 text-slate-600">{item.description}</p></article>))}</div></section>
+
+      {/* Overview */}
+      <section className="mb-16">
+        <SectionHeading eyebrow={locale === 'zh' ? '概览' : 'Overview'} title={locale === 'zh' ? overviewTitleZh : overviewTitleEn} description={locale === 'zh' ? overviewDescZh : overviewDescEn} />
+
+        <div className="mt-10 grid gap-8 lg:grid-cols-3">
+          {/* Mission */}
+          <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+            <h3 className="text-lg font-semibold text-slate-900">{locale === 'zh' ? '我们为什么存在' : 'Why we exist'}</h3>
+            <p className="mt-4 text-base leading-7 text-slate-600">
+              {locale === 'zh'
+                ? '优秀学生很多，但真正能证明能力的项目、成果和经历并不多。我们希望给有想法、想进步、愿意扛压力的人一条更真实的路径。'
+                : 'There is no shortage of talented students, but far fewer real projects and experiences that prove ability. We offer a more real path to students with ambition and grit.'}
+            </p>
+          </div>
+
+          {/* Beliefs */}
+          <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+            <h3 className="text-lg font-semibold text-slate-900">{locale === 'zh' ? '我们相信' : 'What we believe'}</h3>
+            <ul className="mt-4 space-y-3 text-base leading-7 text-slate-600">
+              <li>{locale === 'zh' ? '论文是起点，不是终点' : 'Papers are a starting point, not the finish line'}</li>
+              <li>{locale === 'zh' ? '学生应当拥有真实 ownership' : 'Students deserve real ownership'}</li>
+              <li>{locale === 'zh' ? '成长来自压力下的执行' : 'Growth comes from execution under pressure'}</li>
+            </ul>
+          </div>
+
+          {/* Structure */}
+          <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+            <h3 className="text-lg font-semibold text-slate-900">{locale === 'zh' ? '组织架构' : 'How we organize'}</h3>
+            <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+              <div className="rounded bg-white px-3 py-2 text-slate-700">Wei</div>
+              <div className="rounded bg-white px-3 py-2 text-slate-700">{locale === 'zh' ? '导师' : 'Advisor'}</div>
+              <div className="rounded bg-white px-3 py-2 text-slate-700">Directors</div>
+              <div className="rounded bg-white px-3 py-2 text-slate-700">{locale === 'zh' ? '管理层' : 'Management'}</div>
+              <div className="rounded bg-white px-3 py-2 text-slate-700">Lead</div>
+              <div className="rounded bg-white px-3 py-2 text-slate-700">{locale === 'zh' ? '项目负责人' : 'Project Lead'}</div>
+              <div className="rounded bg-white px-3 py-2 text-slate-700">Member</div>
+              <div className="rounded bg-white px-3 py-2 text-slate-700">{locale === 'zh' ? '成员' : 'Member'}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Areas */}
+      <section className="mb-16">
+        <SectionHeading eyebrow={locale === 'zh' ? '研究' : 'Research'} title={locale === 'zh' ? '研究方向' : 'Research Tracks'} description={locale === 'zh' ? '两个核心方向，有真实应用场景、做出来会被用到' : 'Two core tracks with real applications and measurable impact'} />
+
+        <div className="mt-10 grid gap-8 lg:grid-cols-2">
+          <div className="rounded-lg border border-slate-200 bg-white p-8">
+            <h3 className="text-xl font-semibold text-slate-900">AI for EDA</h3>
+            <p className="mt-4 text-base leading-7 text-slate-600">
+              {locale === 'zh' ? '用 AI 解决电路设计自动化中的关键问题' : 'Using AI to solve key problems in electronic design automation'}
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-slate-600">
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+                {locale === 'zh' ? 'TabPFN 架构模型自研与性能增强' : 'TabPFN architecture exploration'}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+                {locale === 'zh' ? 'EDA 良率数据库构建与开源' : 'EDA yield database construction'}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+                {locale === 'zh' ? 'EDA 优化算法引擎开发与开源' : 'EDA optimization engine development'}
+              </li>
+            </ul>
+          </div>
+
+          <div className="rounded-lg border border-slate-200 bg-white p-8">
+            <h3 className="text-xl font-semibold text-slate-900">AI for LCA</h3>
+            <p className="mt-4 text-base leading-7 text-slate-600">
+              {locale === 'zh' ? '用 AI 提升碳足迹评估与生命周期分析的效率' : 'Using AI to improve carbon footprint and life cycle analysis efficiency'}
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-slate-600">
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+                {locale === 'zh' ? 'LCA 数据预测与匹配' : 'LCA data prediction and matching'}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+                {locale === 'zh' ? 'EPD 智能检索体系' : 'EPD intelligent retrieval system'}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+                {locale === 'zh' ? 'LLM Agent 碳足迹自动化评估' : 'LLM-agent carbon footprint evaluation'}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Publications Preview */}
+      <section className="mb-16">
+        <SectionHeading eyebrow={locale === 'zh' ? '成果' : 'Outputs'} title={locale === 'zh' ? '论文发表' : 'Publications'} description={locale === 'zh' ? '已在 DAC、ICCAD、NeurIPS 等顶会发表' : 'Published at DAC, ICCAD, NeurIPS and other top venues'} />
+
+        <div className="mt-10">
+          <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 text-center">
+            <p className="text-slate-600">{locale === 'zh' ? '论文列表详见 Publications 页面' : 'See Publications page for the full list'}</p>
+            <Link href={`/${locale}/publications`} className="mt-4 inline-block rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800">
+              {locale === 'zh' ? '查看论文' : 'View Publications'}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Join CTA */}
+      <section className="rounded-lg border border-slate-200 bg-slate-50 p-8 text-center">
+        <h2 className="text-2xl font-semibold text-slate-900">{locale === 'zh' ? '准备好加入了吗' : 'Ready to join'}</h2>
+        <p className="mt-4 text-base text-slate-600">
+          {locale === 'zh' ? '我们欢迎有想法、愿意自驱、能扛压力的同学' : 'We welcome students with ambition, self-drive, and grit'}
+        </p>
+        <Link href={`/${locale}/join`} className="mt-6 inline-block rounded-lg bg-slate-900 px-6 py-3 text-sm font-medium text-white hover:bg-slate-800">
+          {locale === 'zh' ? '申请加入' : 'Apply Now'}
+        </Link>
+      </section>
     </div>
   );
 }
