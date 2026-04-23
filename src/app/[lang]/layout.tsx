@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Atmosphere } from '@/components/atmosphere';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { getSiteContent } from '@/content/site';
@@ -33,7 +34,8 @@ export default async function LocaleLayout({ children, params }: Readonly<{ chil
   if (!isLocale(lang)) notFound();
   const locale = lang as Locale;
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
+      <Atmosphere />
       <SiteHeader locale={locale} />
       <main className="flex-1">{children}</main>
       <SiteFooter locale={locale} />

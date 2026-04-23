@@ -18,9 +18,12 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   return (
     <div className="mx-auto w-full max-w-6xl px-6 py-16">
       {/* Hero */}
-      <section className="mb-16">
-        <div className="max-w-3xl">
-          <h1 className="text-4xl font-semibold text-slate-900 lg:text-5xl">
+      <section className="relative mb-16">
+        <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-grid-pattern opacity-[0.14] [mask-image:radial-gradient(ellipse_at_top,black,transparent_72%)]" />
+        <div className="pointer-events-none absolute -inset-24 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(11,95,255,0.14),transparent_60%),radial-gradient(circle_at_82%_35%,rgba(20,184,166,0.12),transparent_55%)]" />
+        <div className="rounded-3xl border border-slate-200/70 bg-white/70 p-10 shadow-[0_40px_100px_-80px_rgba(2,6,23,0.65)] backdrop-blur-md sm:p-12">
+          <div className="max-w-3xl">
+            <h1 className="font-display text-4xl font-semibold tracking-tight text-slate-900 lg:text-5xl">
             {locale === 'zh' ? '把真正有价值的研究做出来' : 'Build meaningful research that survives outside the lab'}
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
@@ -28,13 +31,14 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               ? '我们是一个做 AI + 工程真实问题研究的联合实验室。学生在这里做真实项目、真实论文和真实开源成果。'
               : 'We are a joint lab working on real AI + engineering problems. Students here build real projects, real papers, and real open-source outcomes.'}
           </p>
-          <div className="mt-8 flex gap-4">
-            <Link href={`/${locale}/join`} className="rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href={`/${locale}/join`} className="rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
               {locale === 'zh' ? '申请加入' : 'Apply Now'}
-            </Link>
-            <Link href={`/${locale}/people`} className="rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:border-slate-400">
+              </Link>
+              <Link href={`/${locale}/people`} className="rounded-lg border border-slate-300/80 bg-white/60 px-5 py-3 text-sm font-medium text-slate-700 backdrop-blur transition hover:border-slate-400">
               {locale === 'zh' ? '查看成员' : 'Meet the Team'}
-            </Link>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -45,7 +49,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
         <div className="mt-10 grid gap-8 lg:grid-cols-3">
           {/* Mission */}
-          <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+          <div className="rounded-lg border border-slate-200/70 bg-white/65 p-6 backdrop-blur">
             <h3 className="text-lg font-semibold text-slate-900">{locale === 'zh' ? '我们为什么存在' : 'Why we exist'}</h3>
             <p className="mt-4 text-base leading-7 text-slate-600">
               {locale === 'zh'
@@ -55,7 +59,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </div>
 
           {/* Beliefs */}
-          <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+          <div className="rounded-lg border border-slate-200/70 bg-white/65 p-6 backdrop-blur">
             <h3 className="text-lg font-semibold text-slate-900">{locale === 'zh' ? '我们相信' : 'What we believe'}</h3>
             <ul className="mt-4 space-y-3 text-base leading-7 text-slate-600">
               <li>{locale === 'zh' ? '论文是起点，不是终点' : 'Papers are a starting point, not the finish line'}</li>
@@ -65,17 +69,17 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </div>
 
           {/* Structure */}
-          <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+          <div className="rounded-lg border border-slate-200/70 bg-white/65 p-6 backdrop-blur">
             <h3 className="text-lg font-semibold text-slate-900">{locale === 'zh' ? '组织架构' : 'How we organize'}</h3>
             <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-              <div className="rounded bg-white px-3 py-2 text-slate-700">Wei</div>
-              <div className="rounded bg-white px-3 py-2 text-slate-700">{locale === 'zh' ? '导师' : 'Advisor'}</div>
-              <div className="rounded bg-white px-3 py-2 text-slate-700">Directors</div>
-              <div className="rounded bg-white px-3 py-2 text-slate-700">{locale === 'zh' ? '管理层' : 'Management'}</div>
-              <div className="rounded bg-white px-3 py-2 text-slate-700">Lead</div>
-              <div className="rounded bg-white px-3 py-2 text-slate-700">{locale === 'zh' ? '项目负责人' : 'Project Lead'}</div>
-              <div className="rounded bg-white px-3 py-2 text-slate-700">Member</div>
-              <div className="rounded bg-white px-3 py-2 text-slate-700">{locale === 'zh' ? '成员' : 'Member'}</div>
+              <div className="rounded bg-white/70 px-3 py-2 text-slate-700">Wei</div>
+              <div className="rounded bg-white/70 px-3 py-2 text-slate-700">{locale === 'zh' ? '导师' : 'Advisor'}</div>
+              <div className="rounded bg-white/70 px-3 py-2 text-slate-700">Directors</div>
+              <div className="rounded bg-white/70 px-3 py-2 text-slate-700">{locale === 'zh' ? '管理层' : 'Management'}</div>
+              <div className="rounded bg-white/70 px-3 py-2 text-slate-700">Lead</div>
+              <div className="rounded bg-white/70 px-3 py-2 text-slate-700">{locale === 'zh' ? '项目负责人' : 'Project Lead'}</div>
+              <div className="rounded bg-white/70 px-3 py-2 text-slate-700">Member</div>
+              <div className="rounded bg-white/70 px-3 py-2 text-slate-700">{locale === 'zh' ? '成员' : 'Member'}</div>
             </div>
           </div>
         </div>

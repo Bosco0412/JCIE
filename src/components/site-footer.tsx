@@ -8,7 +8,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
   const content = getSiteContent(locale);
 
   return (
-    <footer className="border-t border-gray-200 bg-white">
+    <footer className="border-t border-slate-200/70 bg-white/65 backdrop-blur-md">
       <div className="mx-auto w-full max-w-6xl px-6 py-12">
         <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
           <div className="flex items-center gap-3">
