@@ -1,6 +1,4 @@
-import { Locale, withLocale } from '@/lib/i18n';
-
-type LocalizedString = Record<Locale, string>;
+import { Locale } from '@/lib/i18n';
 
 const siteConfig = {
   name: 'SZU-UoS JCIE',
@@ -13,6 +11,15 @@ const siteConfig = {
   contactEmail: 'baowen435@gmail.com',
   githubUrl: 'https://github.com/Bosco0412/JCIE',
 };
+
+const siteBasePath = (() => {
+  try {
+    const pathname = new URL(siteConfig.url).pathname.replace(/\/$/, '');
+    return pathname || '';
+  } catch {
+    return '';
+  }
+})();
 
 const localizedMeta = {
   tagline: { zh: '真实项目、真实论文、真实开源成果', en: 'Real projects, real papers, real open-source output' },
@@ -28,6 +35,7 @@ export function getSiteContent(locale: Locale) {
     locale,
     siteConfig: {
       ...siteConfig,
+      basePath: siteBasePath,
       tagline: localizedMeta.tagline[locale],
       title: localizedMeta.title[locale],
       description: localizedMeta.description[locale],
