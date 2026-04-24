@@ -122,7 +122,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
       {/* Publications Preview */}
       <section className="mb-16">
-        <SectionHeading eyebrow={locale === 'zh' ? '成果' : 'Outputs'} title={locale === 'zh' ? '论文发表' : 'Publications'} description={locale === 'zh' ? '已在 DAC、ICCAD、NeurIPS 等顶会发表' : 'Published at DAC, ICCAD, NeurIPS and other top venues'} />
+        <SectionHeading eyebrow={locale === 'zh' ? '成果' : 'Outputs'} title={locale === 'zh' ? '论文发表' : 'Publications'} description={locale === 'zh' ? '已在 DAC、ICCAD、EST 等顶会顶刊发表' : 'Published at DAC, ICCAD, EST and other top conferences and journals'} />
 
         <div className="mt-10">
           <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 text-center">
