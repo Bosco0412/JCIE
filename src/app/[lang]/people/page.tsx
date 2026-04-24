@@ -41,9 +41,6 @@ export default async function PeoplePage({ params }: { params: Promise<{ lang: s
       {/* Members */}
       <section className="mt-12">
         <h2 className="text-lg font-semibold text-slate-900">{roleLabels.member[locale]}</h2>
-        <p className="mt-2 text-sm text-slate-500">
-          {locale === 'zh' ? '除导师外，其余成员统一展示' : 'All non-mentor members are listed below'}
-        </p>
 
         {membersList.length > 0 ? (
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

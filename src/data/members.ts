@@ -34,8 +34,6 @@ export const members: Member[] = [
     role: 'wei',
     title: '\u5BFC\u5E08',
     titleEn: 'Mentor',
-    bio: 'JCIE \u5BFC\u5E08\u3002',
-    bioEn: 'Mentor of JCIE.',
   },
 
   // Directors
