@@ -28,7 +28,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
             {locale === 'zh'
-              ? '我们是一个做 AI + 工程真实问题研究的联合实验室。我们只做真实项目、真实论文和真实开源成果。'
+              ? '我们是一个做 AI + 工程问题研究的联合实验室。我们只做真实项目、真实论文和真实开源成果。'
               : 'We are a joint lab working on real AI + engineering problems. We only build real projects, real papers, and real open-source outcomes.'}
           </p>
             <div className="mt-8 flex flex-wrap gap-4">
