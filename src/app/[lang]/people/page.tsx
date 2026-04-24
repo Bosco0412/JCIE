@@ -1,7 +1,9 @@
 ﻿import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionHeading } from '@/components/section-heading';
-import { members, roleLabels } from '@/data/members';
+import { Markdown } from '@/components/markdown';
+import { getMembers } from '@/content/members';
+import { roleLabels, type Member } from '@/data/members';
 import { isLocale, Locale } from '@/lib/i18n';
 
 export default async function PeoplePage({ params }: { params: Promise<{ lang: string }> }) {
@@ -9,14 +11,9 @@ export default async function PeoplePage({ params }: { params: Promise<{ lang: s
   if (!isLocale(lang)) notFound();
   const locale = lang as Locale;
 
+  const members = await getMembers();
   const weiMembers = members.filter((m) => m.role === 'wei');
-  const seen = new Set<string>();
-  const membersList = members.filter((m) => m.role !== 'wei').filter((m) => {
-    const key = m.nameEn || m.name;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  const membersList = members.filter((m) => m.role !== 'wei');
 
   return (
     <div className="mx-auto w-full max-w-6xl px-6 py-16">
@@ -69,7 +66,7 @@ export default async function PeoplePage({ params }: { params: Promise<{ lang: s
   );
 }
 
-function MemberCard({ member, locale, compact = false }: { member: typeof members[0]; locale: Locale; compact?: boolean }) {
+function MemberCard({ member, locale, compact = false }: { member: Member; locale: Locale; compact?: boolean }) {
   const name = locale === 'zh' ? member.name : (member.nameEn || member.name);
   const title =
     member.role === 'wei'
@@ -104,7 +101,11 @@ function MemberCard({ member, locale, compact = false }: { member: typeof member
         <div className="flex-1">
           <h3 className="text-base font-medium text-slate-900">{name}</h3>
           {title && <p className="mt-1 text-sm text-slate-600">{title}</p>}
-          {bio && <p className="mt-3 text-sm text-slate-500">{bio}</p>}
+          {bio && (
+            <div className="text-slate-500 [&>p:first-child]:mt-3 [&>p]:text-sm">
+              <Markdown content={bio} />
+            </div>
+          )}
           <div className="mt-3 flex gap-4">
             {member.github && (
               <Link href={member.github} className="text-xs text-slate-500 hover:text-slate-900">
