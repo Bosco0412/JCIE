@@ -38,6 +38,40 @@ export const members: Member[] = [
     bioEn: 'Advisor of JCIE.',
   },
 
+  // Directors (管理层)
+  {
+    id: 'director-kaiqi',
+    name: '\u51EF\u671F', // 凯期
+    role: 'director',
+    directorPosition: 'president',
+    title: 'President',
+    titleEn: 'President',
+  },
+  {
+    id: 'director-baowen-recruitment',
+    name: '\u5B9D\u6587', // 宝文
+    role: 'director',
+    directorPosition: 'recruitment',
+    title: 'Director of Recruitment',
+    titleEn: 'Director of Recruitment',
+  },
+  {
+    id: 'director-baowen-communications',
+    name: '\u5B9D\u6587', // 宝文
+    role: 'director',
+    directorPosition: 'communications',
+    title: 'Director of Communications',
+    titleEn: 'Director of Communications',
+  },
+  {
+    id: 'director-jinghai',
+    name: '\u9756\u6D77', // 靖海
+    role: 'director',
+    directorPosition: 'computing',
+    title: 'Director of Computing',
+    titleEn: 'Director of Computing',
+  },
+
   // Leads (项目负责人)
   { id: 'lead-kaiqi', name: '\u51EF\u671F', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 凯期
   { id: 'lead-qinxin', name: '\u6C81\u5FC3', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 沁心
@@ -125,4 +159,3 @@ export const roleLabels: Record<MemberRole, Record<string, string>> = {
   lead: { zh: 'Lead', en: 'Project Lead' },
   member: { zh: '\u6210\u5458', en: 'Member' },
 };
-
