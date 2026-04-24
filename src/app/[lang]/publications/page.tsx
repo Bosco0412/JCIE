@@ -5,31 +5,103 @@ import { isLocale, Locale } from '@/lib/i18n';
 
 export const publicationsData = [
   {
-    id: 'pub-1',
-    title: 'Paper Title 1',
-    authors: ['Author A', 'Author B', 'Wei'],
-    venue: 'DAC 2025',
+    id: 'dac-2024-every-failure',
+    title: 'Every Failure Is a Lesson: Utilizing All Failure Samples to Deliver Tuning-Free Efficient Yield Evaluation',
+    authors: ['Wei Xing', 'Yanfang Liu', 'Weijian Fan', 'Lei He'],
+    venue: 'DAC',
+    year: 2024,
+    area: 'EDA',
+    link: 'https://dl.acm.org/doi/abs/10.1145/3649329.3657381',
+  },
+  {
+    id: 'dac-2024-kato',
+    title: 'Kato: Knowledge Alignment and Transfer for Transistor Sizing of Different Design and Technology',
+    authors: ['Wei W. Xing', 'Weijian Fan', 'Zhuohua Liu', 'Yuan Yao', 'Yuanqi Hu'],
+    venue: 'DAC',
+    year: 2024,
+    area: 'EDA',
+    link: 'https://dl.acm.org/doi/abs/10.1145/3649329.3657380',
+  },
+  {
+    id: 'iccd-2025-openyield',
+    title: 'OpenYield: An Open-Source SRAM Yield Analysis and Optimization Benchmark Suite',
+    authors: ['Shan Shen', 'Xingyang Li', 'Zhuohua Liu', 'Junhao Ma', 'Yikai Wang', 'Yiheng Wu', 'Yuquan Sun', 'Wei W. Xing'],
+    venue: 'ICCD',
     year: 2025,
     area: 'EDA',
-    link: '#',
+    link: 'https://ieeexplore.ieee.org/abstract/document/11310974/',
   },
   {
-    id: 'pub-2',
-    title: 'Paper Title 2',
-    authors: ['Author C', 'Author D'],
-    venue: 'ICCAD 2024',
+    id: 'iccad-2025-astra',
+    title: 'ASTRA: Automatic Sizing of Transistors with Reasoning Agents',
+    authors: ['Wei W. Xing', 'Baowen Ou', 'Yuxuan Zhang', 'Zhuohua Liu', 'Yuanqi Hu'],
+    venue: 'ICCAD',
+    year: 2025,
+    area: 'EDA',
+    link: 'https://ieeexplore.ieee.org/abstract/document/11240675/',
+  },
+  {
+    id: 'iccad-2025-dive',
+    title: 'DIVE: Dynamic Information-Guided Variable Expansion for Deeper Analog Circuit Optimization',
+    authors: ['Zhuohua Liu', 'Weilun Xie', 'Yuxuan Zhang', 'Chen Wang', 'Yuanqi Hu', 'Wei W. Xing'],
+    venue: 'ICCAD',
+    year: 2025,
+    area: 'EDA',
+    link: 'https://ieeexplore.ieee.org/abstract/document/11240976/',
+  },
+  {
+    id: 'iseda-2025-design-space-folding',
+    title: 'Design Space Folding: A "Free-lunch" Add-on for Efficient Design Convergence in Transistor Sizing',
+    authors: ['Zhuohua Liu', 'Yuxuan Zhang', 'Weilun Xie', 'Yuanqi Hu', 'Wei W. Xing'],
+    venue: 'ISEDA',
+    year: 2025,
+    area: 'EDA',
+    link: 'https://ieeexplore.ieee.org/abstract/document/11100880/',
+  },
+  {
+    id: 'iccad-2024-aro',
+    title: 'Aro: Autoregressive Operator Learning for Transferable and Multi-fidelity 3D-IC Thermal Analysis with Active Learning',
+    authors: ['Mingyue Wang', 'Yuanqing Cheng', 'Weiheng Zeng', 'Zhenjie Lu', 'Vasilis F. Pavlidis', 'Wei Xing'],
+    venue: 'ICCAD',
     year: 2024,
     area: 'EDA',
-    link: '#',
+    link: 'https://dl.acm.org/doi/abs/10.1145/3676536.3676713',
   },
   {
-    id: 'pub-3',
-    title: 'Paper Title 3',
-    authors: ['Author E', 'Author F'],
-    venue: 'NeurIPS 2024',
-    year: 2024,
+    id: 'iccad-2023-opt',
+    title: 'OPT: Optimal Proposal Transfer for Efficient Yield Optimization for Analog and SRAM Circuits',
+    authors: ['Yanfang Liu', 'Guohao Dai', 'Yuanqing Cheng', 'Wang Kang', 'Wei W. Xing'],
+    venue: 'ICCAD',
+    year: 2023,
+    area: 'EDA',
+    link: 'https://ieeexplore.ieee.org/abstract/document/10323689/',
+  },
+  {
+    id: 'ijhe-2023-sofc',
+    title: 'Multi-fidelity Design Optimization of Solid Oxide Fuel Cells Using a Bayesian Feature Enhanced Stochastic Collocation',
+    authors: ['Wei W. Xing', 'Akeel A. Shah', 'Guohao Dai', 'Ziyang Zhang', 'Ting Guo', 'Hong Qiu', 'Puiki Leung', 'Qian Xu', 'Xun Zhu', 'Qiang Liao'],
+    venue: 'IJHE',
+    year: 2023,
     area: 'LCA',
-    link: '#',
+    link: 'https://www.sciencedirect.com/science/article/pii/S0360319923017007',
+  },
+  {
+    id: 'dac-2023-yield-barrier',
+    title: 'Seeking the Yield Barrier: High-dimensional SRAM Evaluation Through Optimal Manifold',
+    authors: ['Yanfang Liu', 'Guohao Dai', 'Wei W. Xing'],
+    venue: 'DAC',
+    year: 2023,
+    area: 'EDA',
+    link: 'https://ieeexplore.ieee.org/abstract/document/10247952/',
+  },
+  {
+    id: 'aspdac-2023-entropy-reduction',
+    title: 'High-dimensional Yield Estimation Using Shrinkage Deep Features and Maximization of Integral Entropy Reduction',
+    authors: ['Shuo Yin', 'Guohao Dai', 'Wei W. Xing'],
+    venue: 'ASP-DAC',
+    year: 2023,
+    area: 'EDA',
+    link: 'https://dl.acm.org/doi/abs/10.1145/3566097.3567907',
   },
 ];
 
@@ -38,8 +110,12 @@ export default async function PublicationsPage({ params }: { params: Promise<{ l
   if (!isLocale(lang)) notFound();
   const locale = lang as Locale;
 
-  const edaPubs = publicationsData.filter((p) => p.area === 'EDA');
-  const lcaPubs = publicationsData.filter((p) => p.area === 'LCA');
+  const edaPubs = publicationsData
+    .filter((p) => p.area === 'EDA')
+    .toSorted((a, b) => (b.year - a.year) || a.venue.localeCompare(b.venue) || a.title.localeCompare(b.title));
+  const lcaPubs = publicationsData
+    .filter((p) => p.area === 'LCA')
+    .toSorted((a, b) => (b.year - a.year) || a.venue.localeCompare(b.venue) || a.title.localeCompare(b.title));
 
   return (
     <div className="mx-auto w-full max-w-6xl px-6 py-16">
