@@ -26,10 +26,10 @@ export interface Member {
 }
 
 export const members: Member[] = [
-  // Advisor (瀵煎笀)
+  // Advisor
   {
     id: 'wei',
-    name: '邢炜', // 邢炜
+    name: '邢炜', 
     nameEn: 'Wei Xing',
     role: 'wei',
     title: '\u5BFC\u5E08',
@@ -38,10 +38,11 @@ export const members: Member[] = [
     bioEn: 'Mentor of JCIE.',
   },
 
-  // Directors (绠＄悊灞?
+  // Directors
   {
     id: 'director-kaiqi',
-    name: '\u51EF\u671F', // 鍑湡
+    name: '黄凯期',
+    nameEn: 'Kaiqi Huang',
     role: 'director',
     directorPosition: 'president',
     title: 'President',
@@ -49,7 +50,8 @@ export const members: Member[] = [
   },
   {
     id: 'director-baowen-recruitment',
-    name: '\u5B9D\u6587', // 瀹濇枃
+    name: '区宝文',
+    nameEn: 'Baowen Ou',
     role: 'director',
     directorPosition: 'recruitment',
     title: 'Director of Recruitment',
@@ -57,7 +59,8 @@ export const members: Member[] = [
   },
   {
     id: 'director-baowen-communications',
-    name: '\u5B9D\u6587', // 瀹濇枃
+    name: '区宝文',
+    nameEn: 'Baowen Ou',
     role: 'director',
     directorPosition: 'communications',
     title: 'Director of Communications',
@@ -65,7 +68,8 @@ export const members: Member[] = [
   },
   {
     id: 'director-jinghai',
-    name: '\u9756\u6D77', // 闈栨捣
+    name: '商靖海',
+    nameEn: 'Jinghai Shang',
     role: 'director',
     directorPosition: 'computing',
     title: 'Director of Computing',
@@ -73,14 +77,14 @@ export const members: Member[] = [
   },
 
   // Leads (椤圭洰璐熻矗浜?
-  { id: 'lead-kaiqi', name: '\u51EF\u671F', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 鍑湡
-  { id: 'lead-qinxin', name: '\u6C81\u5FC3', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 娌佸績
-  { id: 'lead-zhuohua', name: '\u5353\u94E7', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 鍗撻摟
-  { id: 'lead-baowen', name: '\u5B9D\u6587', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 瀹濇枃
-  { id: 'lead-jinghai', name: '\u9756\u6D77', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 闈栨捣
-  { id: 'lead-jiazhan', name: '\u4F73\u5C55', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 浣冲睍
-  { id: 'lead-bohao', name: '\u535A\u8C6A', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 鍗氳豹
-  { id: 'lead-xixi', name: '\u7199\u66E6', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, // 鐔欐洣
+  { id: 'lead-kaiqi', name: '黄凯期', nameEn: 'Kaiqi Huang', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, 
+  { id: 'lead-qinxin', name: '梅沁心', nameEn: 'Qinxin Mei', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, 
+  { id: 'lead-zhuohua', name: '刘卓铧', nameEn: 'Zhuohua Liu', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, 
+  { id: 'lead-baowen', name: '区宝文', nameEn: 'Baowen Ou', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, 
+  { id: 'lead-jinghai', name: '商靖海', nameEn: 'Jinghai Shang', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, 
+  { id: 'lead-jiazhan', name: '刘佳展', nameEn: 'Jiazhan Liu', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, 
+  { id: 'lead-bohao', name: '刘博豪', nameEn: 'Bohao Liu', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, 
+  { id: 'lead-xixi', name: '周熙曦', nameEn: 'Xixi Zhou', role: 'lead', title: 'Lead', titleEn: 'Project Lead' }, 
 
   // Directors (绠＄悊灞? - TODO: fill real info
   // {
@@ -99,14 +103,14 @@ export const members: Member[] = [
 
   // Members (成员)
   { id: 'member-zhaojunan', name: '招俊安', role: 'member' },
-  { id: 'member-maizirui', name: '麦梓睿', role: 'member' },
-  { id: 'member-yuanyizhong', name: '苑艺钟', role: 'member' },
-  { id: 'member-tanghaohao', name: '唐浩浩', role: 'member' },
-  { id: 'member-zhuzexi', name: '朱则熹', role: 'member' },
-  { id: 'member-xuyipeng', name: '徐一鹏', role: 'member' },
-  { id: 'member-linweibin', name: '林伟斌', role: 'member' },
-  { id: 'member-liaohongshang', name: '廖宏商', role: 'member' },
-  { id: 'member-wangjiyi', name: '王继熠', role: 'member' },
+  { id: 'member-maizirui', name: '麦梓睿', nameEn: 'Maizirui Mai', role: 'member' },
+  { id: 'member-yuanyizhong', name: '苑艺钟', nameEn: 'Yuan Yizhong', role: 'member' },
+  { id: 'member-tanghaohao', name: '唐浩浩', nameEn: 'Tang Haohao', role: 'member' },
+  { id: 'member-zhuzexi', name: '朱则熹', nameEn: 'Zhu Zexi', role: 'member' },
+  { id: 'member-xuyipeng', name: '徐一鹏', nameEn: 'Xu Yipeng', role: 'member' },
+  { id: 'member-linweibin', name: '林伟斌', nameEn: 'Lin Weibin', role: 'member' },
+  { id: 'member-liaohongshang', name: '廖宏商', nameEn: 'Liao Hongshang', role: 'member' },
+  { id: 'member-wangjiyi', name: '王继熠', nameEn: 'Wang Jiyi', role: 'member' },
 ];
 
 export function getMembersByRole(role: MemberRole): Member[] {
