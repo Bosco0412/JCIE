@@ -38,7 +38,7 @@ track_lca_items:
 publications_eyebrow: 成果
 publications_title: 论文发表
 publications_description: 已在 DAC、ICCAD、EST 等顶会顶刊发表
-publications_card_text: 论文列表详见 Publications 页面
+publications_card_text: 点击查看已发表论文
 publications_card_button: 查看论文
 
 join_cta_title: 准备好加入了吗
