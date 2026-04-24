@@ -1,21 +1,22 @@
 ---
 hero_title: Build meaningful research that survives outside the lab
-hero_lead: We are a joint lab working on real AI + engineering problems. We only build real projects, real papers, and real open-source outcomes.
+hero_lead: We work on real AI + engineering problems and turn effort into verifiable outcomes—papers, tools, and open-source work that can be reproduced and used.
 hero_cta_primary: Apply Now
 hero_cta_secondary: Meet the Team
 
 overview_eyebrow: Overview
 overview_title: Who We Are
-overview_description: JCIE is a joint research centre between Shenzhen University and the University of Sheffield, focused on real AI + engineering problems.
+overview_description: JCIE is a joint centre between Shenzhen University and the University of Sheffield, focused on AI for EDA and AI for LCA—driven by real problems and real outputs.
 
 mission_title: Why we exist
-mission_body: There is no shortage of talented students, but far fewer real projects and experiences that prove ability. We offer a more real path to students with ambition and grit.
+mission_body: Talented students are everywhere, but far fewer have work that truly proves ability. In applications and interviews, people look beyond GPA: real projects, reproducible results, and concrete outputs. We help you stand out with work others can evaluate.
 
 beliefs_title: What we believe
 beliefs_items:
   - Papers are a starting point, not the finish line
-  - Students deserve real ownership
-  - Growth comes from experience
+  - Results must be reproducible, citable, and maintainable
+  - Tools should be used by real users
+  - Students own end-to-end responsibility and outcomes
 
 research_eyebrow: Research
 research_title: Research Tracks
@@ -42,7 +43,6 @@ publications_card_text: See Publications page for the full list
 publications_card_button: View Publications
 
 join_cta_title: Ready to join
-join_cta_body: We welcome students with ambition and self-drive
+join_cta_body: We welcome students with ambition, self-drive, and the ability to turn ideas into results
 join_cta_button: Apply Now
 ---
-

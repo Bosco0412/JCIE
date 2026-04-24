@@ -8,15 +8,22 @@ email_button_label: Send Application Email
 
 ## What you will get
 
-- A paper you truly helped build: from baselines and experiments to drafts, you participate in the full pipeline
-- A tool that can be used: built with openness and reproducibility; great work gets truly used
-- A story worth telling: real experience you can explain clearly and others can ask about deeply
+- A paper you truly helped build: baseline → experiments → draft, end-to-end participation
+- A tool that real users can use: open-source by default, reproducible, and maintained as an asset
+- A story worth telling: you can clearly explain the problem, approach, results, and your own contributions
 
 ## What you need
 
 - Can write Python, read papers in English, use GitHub
 - Think independently first, communicate when stuck
 - Willing to work under pressure, solve problems, grow quickly
+
+## How we run projects
+
+- **Student ownership**: one student drives the project end-to-end
+- **Advisor guidance**: direction, milestone reviews, feedback, and final polishing
+- **Reproducibility first**: runnable code and reproducible experiments
+- **Output-driven**: push work into papers, open-source repos, or usable tools
 
 ## First thing after joining
 
@@ -31,4 +38,3 @@ Just tell us three things: who you are, what you have done, why you want to join
 ## Note
 
 There is no salary, no credits. But what you can get here, many students never truly achieve in four years.
-

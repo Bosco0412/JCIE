@@ -1,21 +1,22 @@
 ---
 hero_title: 把真正有价值的研究做出来
-hero_lead: 我们是一个做 AI + 工程真实问题研究的联合实验室。我们只做真实项目、真实论文和真实开源成果。
+hero_lead: 我们做 AI + 工程真实问题研究，把努力变成可展示、可复现、可被使用的成果：论文、工具与开源。
 hero_cta_primary: 申请加入
 hero_cta_secondary: 查看成员
 
 overview_eyebrow: 概览
 overview_title: 我们是谁
-overview_description: JCIE 是深圳大学与英国谢菲尔德大学联合成立的研究中心，聚焦 AI + 工程真实问题。
+overview_description: JCIE 是深圳大学与英国谢菲尔德大学联合成立的研究中心，聚焦 AI for EDA 与 AI for LCA，面向真实问题做出真实产出。
 
 mission_title: 我们为什么存在
-mission_body: 优秀学生很多，但真正能证明能力的项目、成果和经历并不多。我们希望给有想法、想进步、愿意科研的人一条更真实的路径。
+mission_body: 优秀学生很多，但真正能证明能力的项目、成果与经历并不多。读研/求职时，别人看的不只是 GPA，更看你做过什么：有没有真实项目、可复现结果、拿得出手的作品。我们希望帮你用“可验证的产出”真正脱颖而出。
 
 beliefs_title: 我们相信
 beliefs_items:
   - 论文是起点，不是终点
-  - 学生应当拥有真实主导权
-  - 成长来自亲身经历
+  - 好结果必须可复现、可引用、可沉淀
+  - 工具要能被真实用户用到
+  - 学生拥有端到端的责任与所有权
 
 research_eyebrow: 研究
 research_title: 研究方向
@@ -42,7 +43,6 @@ publications_card_text: 点击查看已发表论文
 publications_card_button: 查看论文
 
 join_cta_title: 准备好加入了吗
-join_cta_body: 我们欢迎有想法、愿意自驱的同学
+join_cta_body: 我们欢迎有想法、愿意自驱、能把想法变成结果的同学
 join_cta_button: 申请加入
 ---
-
