@@ -91,8 +91,8 @@ export const publicationsData = [
     authors: ['Wei W. Xing', 'Hong Chen', 'Zidong Chen', 'Zhishan Quan', 'Bertrand Laratte', 'Mark Walsh', 'Jing Pu', 'Jose L. Casamayor'],
     venue: 'Procedia CIRP',
     year: 2025,
-    area: 'LCA',
-    link: '#',
+    area: 'EDA',
+    link: 'https://doi.org/10.1016/j.procir.2025.01.046',
   },
   {
     id: 'est-semanet',
@@ -101,7 +101,7 @@ export const publicationsData = [
     venue: 'Environmental Science & Technology',
     year: 2025,
     area: 'LCA',
-    link: '#',
+    link: 'https://doi.org/10.1021/acs.est.5c07557',
   },
   {
     id: 'dac-2026-breaking-tuning-barrier',
@@ -158,7 +158,7 @@ export default async function PublicationsPage({ params }: { params: Promise<{ l
       <SectionHeading
         eyebrow={locale === 'zh' ? '论文' : 'Publications'}
         title={locale === 'zh' ? '发表论文' : 'Published Papers'}
-        description={locale === 'zh' ? '在 DAC、ICCAD、NeurIPS 等国际顶会顶刊发表' : 'Published at DAC, ICCAD, NeurIPS and other top venues'}
+        description={locale === 'zh' ? '在 DAC、ICCAD、EST 等国际顶会顶刊发表' : 'Published at DAC, ICCAD, EST and other top venues'}
       />
 
       {/* AI for EDA */}
