@@ -12,8 +12,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
   const overviewTitleZh = '我们是谁';
   const overviewTitleEn = 'Who We are';
-  const overviewDescZh = 'JCIE 是深圳大学与谢菲尔德大学联合成立的研究中心，聚焦 AI + 工程真实问题。学生在这里做真实项目、真实论文和真实开源成果。';
-  const overviewDescEn = 'JCIE is a joint research centre between Shenzhen University and University of Sheffield, focused on AI + engineering real-world problems. Students here build real projects, real papers, and real open-source outcomes.';
+  const overviewDescZh = 'JCIE 是深圳大学与谢菲尔德大学联合成立的研究中心，聚焦 AI + 工程真实问题。我们只做真实项目、真实论文和真实开源成果。';
+  const overviewDescEn = 'JCIE is a joint research centre between Shenzhen University and University of Sheffield, focused on AI + engineering real-world problems. We only build real projects, real papers, and real open-source outcomes.';
 
   return (
     <div className="mx-auto w-full max-w-6xl px-6 py-16">
@@ -28,8 +28,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
             {locale === 'zh'
-              ? '我们是一个做 AI + 工程真实问题研究的联合实验室。学生在这里做真实项目、真实论文和真实开源成果。'
-              : 'We are a joint lab working on real AI + engineering problems. Students here build real projects, real papers, and real open-source outcomes.'}
+              ? '我们是一个做 AI + 工程真实问题研究的联合实验室。我们只做真实项目、真实论文和真实开源成果。'
+              : 'We are a joint lab working on real AI + engineering problems. We only build real projects, real papers, and real open-source outcomes.'}
           </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href={`/${locale}/join`} className="rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
@@ -53,7 +53,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <h3 className="text-lg font-semibold text-slate-900">{locale === 'zh' ? '我们为什么存在' : 'Why we exist'}</h3>
             <p className="mt-4 text-base leading-7 text-slate-600">
               {locale === 'zh'
-                ? '优秀学生很多，但真正能证明能力的项目、成果和经历并不多。我们希望给有想法、想进步、愿意扛压力的人一条更真实的路径。'
+                ? '优秀学生很多，但真正能证明能力的项目、成果和经历并不多。我们希望给有想法、想进步、愿意科研的人一条更真实的路径。'
                 : 'There is no shortage of talented students, but far fewer real projects and experiences that prove ability. We offer a more real path to students with ambition and grit.'}
             </p>
           </div>
@@ -63,8 +63,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             <h3 className="text-lg font-semibold text-slate-900">{locale === 'zh' ? '我们相信' : 'What we believe'}</h3>
             <ul className="mt-4 space-y-3 text-base leading-7 text-slate-600">
               <li>{locale === 'zh' ? '论文是起点，不是终点' : 'Papers are a starting point, not the finish line'}</li>
-              <li>{locale === 'zh' ? '学生应当拥有真实 ownership' : 'Students deserve real ownership'}</li>
-              <li>{locale === 'zh' ? '成长来自压力下的执行' : 'Growth comes from execution under pressure'}</li>
+              <li>{locale === 'zh' ? '学生应当拥有真实主导权' : 'Students deserve real ownership'}</li>
+              <li>{locale === 'zh' ? '成长来自亲身经历' : 'Growth comes from Experience'}</li>
             </ul>
           </div>
 
@@ -138,7 +138,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <section className="rounded-lg border border-slate-200 bg-slate-50 p-8 text-center">
         <h2 className="text-2xl font-semibold text-slate-900">{locale === 'zh' ? '准备好加入了吗' : 'Ready to join'}</h2>
         <p className="mt-4 text-base text-slate-600">
-          {locale === 'zh' ? '我们欢迎有想法、愿意自驱、能扛压力的同学' : 'We welcome students with ambition, self-drive, and grit'}
+          {locale === 'zh' ? '我们欢迎有想法、愿意自驱的同学' : 'We welcome students with ambition and self-drive'}
         </p>
         <Link href={`/${locale}/join`} className="mt-6 inline-block rounded-lg bg-slate-900 px-6 py-3 text-sm font-medium text-white hover:bg-slate-800">
           {locale === 'zh' ? '申请加入' : 'Apply Now'}
