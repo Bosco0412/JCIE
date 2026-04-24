@@ -7,9 +7,9 @@ const siteConfig = {
     zh: '深圳大学-谢菲尔德大学国际合作双创人才培养基地',
     en: 'SZU-UoS Joint Centre for Innovation and Entrepreneurship'
   },
-  url: 'https://bosco0412.github.io/JCIE',
+  url: 'https://icelab-jcie.github.io/JCIE_Website',
   contactEmail: 'baowen435@gmail.com',
-  githubUrl: 'https://github.com/Bosco0412/JCIE',
+  githubUrl: 'https://github.com/IceLab-JCIE/JCIE_Website',
 };
 
 const siteBasePath = (() => {

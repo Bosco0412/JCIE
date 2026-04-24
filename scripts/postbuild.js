@@ -14,13 +14,13 @@ const rootIndexHtml = `<!DOCTYPE html>
   <title>JCIE</title>
   <script>
     // Redirect to Chinese version by default
-    window.location.replace('/JCIE/zh/');
+    window.location.replace('/JCIE_Website/zh/');
   </script>
-  <meta http-equiv="refresh" content="0;url=/JCIE/zh/">
-  <link rel="canonical" href="/JCIE/zh/">
+  <meta http-equiv="refresh" content="0;url=/JCIE_Website/zh/">
+  <link rel="canonical" href="/JCIE_Website/zh/">
 </head>
 <body>
-  <a href="/JCIE/zh/">Click here to continue</a>
+  <a href="/JCIE_Website/zh/">Click here to continue</a>
 </body>
 </html>`;
 fs.writeFileSync(path.join(outDir, 'index.html'), rootIndexHtml);

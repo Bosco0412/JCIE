@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const { lang } = await params;
   if (!isLocale(lang)) return {};
   const content = getSiteContent(lang);
+  const ogUrl = `${content.siteConfig.url.replace(/\/$/, '')}/${lang}`;
   return {
     title: {
       default: content.siteConfig.title,
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     openGraph: {
       title: content.siteConfig.title,
       description: content.siteConfig.description,
-      url: `https://bosco0412.github.io/JCIE/${lang}`,
+      url: ogUrl,
       siteName: content.siteConfig.name,
       locale: lang === 'zh' ? 'zh_CN' : 'en_US',
       type: 'website',
