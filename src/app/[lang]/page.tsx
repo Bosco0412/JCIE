@@ -2,7 +2,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionHeading } from '@/components/section-heading';
 import { getPageContent } from '@/content/pages';
+import { getAlumni } from '@/content/alumni';
 import { isLocale, Locale } from '@/lib/i18n';
+import type { Alumni, Publication } from '@/data/members';
 
 function getString(data: Record<string, unknown>, key: string, fallback = '') {
   const v = data[key];
@@ -20,6 +22,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   const locale = lang as Locale;
 
   const { data } = await getPageContent('home', locale);
+  const alumni = await getAlumni();
 
   const heroTitle = getString(data, 'hero_title');
   const heroLead = getString(data, 'hero_lead');
@@ -152,6 +155,22 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </div>
       </section>
 
+      {/* Outstanding Members */}
+      {alumni.length > 0 && (
+        <section className="mb-16">
+          <SectionHeading
+            eyebrow={locale === 'zh' ? '成果' : 'Achievements'}
+            title={locale === 'zh' ? '优秀成员' : 'Outstanding Members'}
+            description={locale === 'zh' ? '已毕业成员的去向与成果' : 'Alumni destinations and achievements'}
+          />
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {alumni.map((member) => (
+              <AlumniCard key={member.id} member={member} locale={locale} />
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Join CTA */}
       <section className="rounded-lg border border-slate-200 bg-slate-50 p-8 text-center">
         <h2 className="text-2xl font-semibold text-slate-900">{joinCtaTitle}</h2>
@@ -162,5 +181,57 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       </section>
     </div>
   );
+}
+
+function AlumniCard({ member, locale }: { member: Alumni; locale: Locale }) {
+  const name = locale === 'zh' ? member.name : (member.nameEn || member.name);
+  const destination = locale === 'zh' ? member.destination : (member.destinationEn || member.destination);
+  const destinationLabel = locale === 'zh' ? '去向' : 'Destination';
+  const publicationsLabel = locale === 'zh' ? '发表论文' : 'Publications';
+
+  return (
+    <article className="rounded-lg border border-slate-200 bg-white p-6">
+      <h3 className="text-lg font-semibold text-slate-900">{name}</h3>
+      {destination && (
+        <div className="mt-4">
+          <span className="text-sm font-medium text-slate-500">{destinationLabel}：</span>
+          <span className="text-sm text-slate-700">{destination}</span>
+        </div>
+      )}
+      {member.publications && member.publications.length > 0 && (
+        <div className="mt-4">
+          <h4 className="text-sm font-medium text-slate-500">{publicationsLabel}</h4>
+          <ul className="mt-2 space-y-2">
+            {member.publications.map((pub, index) => (
+              <PublicationItem key={index} publication={pub} />
+            ))}
+          </ul>
+        </div>
+      )}
+    </article>
+  );
+}
+
+function PublicationItem({ publication }: { publication: Publication }) {
+  const content = (
+    <span className="text-sm text-slate-700">
+      {publication.title}
+      <span className="ml-2 text-slate-500">
+        — {publication.venue}, {publication.year}
+      </span>
+    </span>
+  );
+
+  if (publication.link) {
+    return (
+      <li>
+        <Link href={publication.link} className="hover:text-slate-900" target="_blank" rel="noopener noreferrer">
+          {content}
+        </Link>
+      </li>
+    );
+  }
+
+  return <li>{content}</li>;
 }
 

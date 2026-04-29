@@ -1,7 +1,7 @@
 ---
 id: weilun-xie
 role: member
-name: 谢伟伦
+name: 谢炜伦
 
 
 ---

@@ -126,10 +126,10 @@ function MemberCard({
             height={48}
             loading="lazy"
             decoding="async"
-            className="h-12 w-12 rounded-full bg-slate-100 object-cover"
+            className="h-12 w-12 rounded-lg bg-slate-100 object-cover"
           />
         ) : (
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-lg font-medium text-slate-400">
+          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100 text-lg font-medium text-slate-400">
             {name.charAt(0)}
           </div>
         )}
