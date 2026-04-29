@@ -1,7 +1,7 @@
 ---
 id: jiyi-wang
 role: member
-name: Jiyi Wang
+name: 王继熠
 photo: /people/jiyi_wang.png
 ---
 
