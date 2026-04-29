@@ -23,6 +23,12 @@ function parseScalar(raw: string): unknown {
   return value;
 }
 
+function parseKeyValueLine(raw: string): { key: string; value: string } | null {
+  const match = /^\s*([A-Za-z0-9_]+):\s*(.*)$/.exec(raw);
+  if (!match) return null;
+  return { key: match[1], value: match[2] ?? '' };
+}
+
 export function parseFrontmatter(source: string): { data: FrontmatterData; body: string } {
   const normalized = source.replace(/\r\n/g, '\n');
   if (!normalized.startsWith('---\n')) {
@@ -49,11 +55,11 @@ export function parseFrontmatter(source: string): { data: FrontmatterData; body:
     const line = fmLines[i];
     if (!line.trim() || line.trim().startsWith('#')) continue;
 
-    const match = /^([A-Za-z0-9_]+):\s*(.*)$/.exec(line);
-    if (!match) continue;
+    const parsed = parseKeyValueLine(line);
+    if (!parsed) continue;
 
-    const key = match[1];
-    const rest = match[2] ?? '';
+    const key = parsed.key;
+    const rest = parsed.value;
 
     if (rest.trim() === '') {
       const list: unknown[] = [];
@@ -61,8 +67,33 @@ export function parseFrontmatter(source: string): { data: FrontmatterData; body:
         const next = fmLines[i + 1];
         const itemMatch = /^\s*-\s+(.*)$/.exec(next);
         if (!itemMatch) break;
-        list.push(parseScalar(itemMatch[1] ?? ''));
+        const firstItem = itemMatch[1] ?? '';
+        const itemAsKeyValue = parseKeyValueLine(firstItem);
+
+        if (!itemAsKeyValue) {
+          list.push(parseScalar(firstItem));
+          i++;
+          continue;
+        }
+
+        const objectItem: Record<string, unknown> = {
+          [itemAsKeyValue.key]: parseScalar(itemAsKeyValue.value),
+        };
         i++;
+
+        while (i + 1 < fmLines.length) {
+          const continuation = fmLines[i + 1];
+          if (/^\s*-\s+/.test(continuation)) break;
+          if (!/^\s+/.test(continuation)) break;
+
+          const continuationParsed = parseKeyValueLine(continuation);
+          if (!continuationParsed) break;
+
+          objectItem[continuationParsed.key] = parseScalar(continuationParsed.value);
+          i++;
+        }
+
+        list.push(objectItem);
       }
       data[key] = list;
       continue;
