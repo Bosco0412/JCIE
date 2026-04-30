@@ -1,6 +1,7 @@
 ---
 id: liao-hongshang
 role: member
-name: Liao Hongshang
+name: Hongshang Liao
+photo: /people/hongshang_liao.png
 ---
 
