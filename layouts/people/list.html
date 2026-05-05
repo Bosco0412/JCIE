@@ -8,7 +8,7 @@
 
   {{ $pages := .Pages }}
   {{ $wei := where $pages "Params.role" "wei" }}
-  {{ $members := where $pages "Params.role" "ne" "wei" }}
+  {{ $members := where $pages "Params.role" "!=" "wei" }}
 
   {{ if gt (len $wei) 0 }}
     <section style="margin-top:18px;">
@@ -44,4 +44,3 @@
     </div>
   </section>
 {{ end }}
-

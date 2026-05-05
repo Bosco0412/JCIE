@@ -1,64 +1,30 @@
-﻿# SZU-UoS JCIE Website
+# Hugo Site (JCIE Website)
 
-A reusable Next.js + Tailwind website scaffold for the SZU-UoS JCIE joint lab.
+This folder contains the Hugo implementation intended for GitHub Pages deployment under:
 
-## Tech Stack
+`https://icelab-jcie.github.io/JCIE_Website/`
 
-- Next.js 16 App Router
-- React 19
-- Tailwind CSS 4
-- TypeScript
+## What To Edit (Maintenance)
 
-## Local Development
+- Site-wide info: `data/site.yaml`
+- Projects (single file): `data/projects.yaml`
+- Publications (single file): `data/publications.yaml`
+- News posts (one file per post, per language): `content/news/*.zh.md` and `content/news/*.en.md`
+- People (one file per person, per language): `content/people/<id>.zh.md` and `content/people/<id>.en.md`
+- Join page: `content/join/_index.zh.md` and `content/join/_index.en.md`
+
+Images:
+
+- People photos: `static/people/*` (referenced as `/people/<file>.png`)
+
+## Local Preview
+
+Install Hugo (extended) and run:
 
 ```bash
-npm install
-npm run dev
+hugo server
 ```
-
-Open `http://localhost:3000`.
-
-## Content Entry Points
-
-Update lab content in:
-
-- `src/content/site.ts`
-
-Key pages:
-
-- `src/app/page.tsx`
-- `src/app/about/page.tsx`
-- `src/app/research/page.tsx`
-- `src/app/join/page.tsx`
-
-Shared layout/components:
-
-- `src/app/layout.tsx`
-- `src/components/site-header.tsx`
-- `src/components/site-footer.tsx`
-- `src/components/section-heading.tsx`
-
-## Before Launch
-
-Replace placeholders in `src/content/site.ts`:
-
-- `siteConfig.url`
-- `siteConfig.contactEmail`
-- `siteConfig.applyFormUrl`
-- `siteConfig.githubUrl`
-
-Configure application-form email delivery in Vercel:
-
-- `RESEND_API_KEY`
-- `CONTACT_TO_EMAIL=baowen435@gmail.com`
-- `CONTACT_FROM_EMAIL=JCIE Applications <your-verified-sender@example.com>`
 
 ## Deployment
 
-Recommended: Vercel.
-
-```bash
-npm run build
-```
-
-Then connect the repo to Vercel and set the production domain.
+GitHub Actions builds Hugo from repo root and deploys `./public` to GitHub Pages.

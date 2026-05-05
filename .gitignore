@@ -13,13 +13,9 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
 # hugo
-/hugo/public/
-/hugo/resources/
+/public/
+/resources/
 .hugo_build.lock
 
 # production
@@ -39,10 +35,4 @@ yarn-error.log*
 .env*
 
 # vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
 .vercel

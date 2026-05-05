@@ -9,9 +9,13 @@
   {{ $site := .Site.Data.site }}
   {{ $email := $site.contactEmail }}
 
-  {{ $content := .Content | replaceRE "\\{\\{contactEmail\\}\\}" $email }}
   <article class="card prose" style="margin-top:18px;">
-    {{ $content | safeHTML }}
+    {{/*
+      Replace the placeholder in raw Markdown before rendering.
+      (Replacing after .Content is too late because Markdown rendering already happened.)
+    */}}
+    {{ $md := .RawContent | replaceRE "\\{\\{contactEmail\\}\\}" $email }}
+    {{ .RenderString $md }}
   </article>
 
   <section class="card-muted" style="margin-top:18px;">
@@ -30,4 +34,3 @@
     </div>
   </section>
 {{ end }}
-
