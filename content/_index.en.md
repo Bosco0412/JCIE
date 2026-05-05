@@ -6,10 +6,10 @@ hero_cta_secondary: Meet the Team
 
 overview_eyebrow: Overview
 overview_title: Who We Are
-overview_description: JCIE is a joint centre between Shenzhen University and the University of Sheffield, focused on AI for EDA and AI for LCA—driven by real problems and real outputs.
+overview_description: "JCIE is a joint centre between Shenzhen University and the University of Sheffield, focused on AI for EDA and AI for LCA—driven by real problems and real outputs."
 
 mission_title: Why we exist
-mission_body: Talented students are everywhere, but far fewer have work that truly proves ability. In applications and interviews, people look beyond GPA: project experience, research experience, and concrete outputs. We help you stand out in the fierce competition.
+mission_body: "Talented students are everywhere, but far fewer have work that truly proves ability. In applications and interviews, people look beyond GPA: project experience, research experience, and concrete outputs. We help you stand out in the fierce competition."
 
 beliefs_title: What we believe
 beliefs_items:
@@ -46,3 +46,4 @@ join_cta_title: Ready to join
 join_cta_body: We welcome students with ambition, self-drive, and the ability to turn ideas into results
 join_cta_button: Apply Now
 ---
+
