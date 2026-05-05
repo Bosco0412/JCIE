@@ -6,7 +6,7 @@
     "description" (cond (eq $lang "zh") "真实问题，真实产出" "Real problems, real outputs")
   ) }}
 
-  {{ $data := .Site.Data.projects.projects }}
+  {{ $data := (index hugo.Data "projects").projects }}
   {{ $eda := where $data "area" "EDA" }}
   {{ $lca := where $data "area" "LCA" }}
 
@@ -48,4 +48,3 @@
     </div>
   </section>
 {{ end }}
-

@@ -1,4 +1,4 @@
-{{ $site := .Site.Data.site }}
+{{ $site := index hugo.Data "site" }}
 {{ $lang := .Lang }}
 {{ $metaTitle := index $site.meta.title $lang | default $site.name }}
 {{ $metaDesc := index $site.meta.description $lang | default "" }}
@@ -19,4 +19,3 @@
 
 {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
-

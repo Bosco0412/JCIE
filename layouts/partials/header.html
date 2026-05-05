@@ -1,4 +1,4 @@
-{{ $site := .Site.Data.site }}
+{{ $site := index hugo.Data "site" }}
 {{ $lang := .Lang }}
 
   {{ $nav := slice

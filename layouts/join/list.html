@@ -6,7 +6,7 @@
     "description" (.Params.description | default "")
   ) }}
 
-  {{ $site := .Site.Data.site }}
+  {{ $site := index hugo.Data "site" }}
   {{ $email := $site.contactEmail }}
 
   <article class="card prose" style="margin-top:18px;">
