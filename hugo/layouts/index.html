@@ -1,0 +1,99 @@
+{{ define "main" }}
+  {{ $p := .Params }}
+  {{ $lang := .Lang }}
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>{{ $p.hero_title }}</h1>
+      <p>{{ $p.hero_lead }}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ relLangURL "/join/" }}">{{ $p.hero_cta_primary }}</a>
+        <a class="btn btn-ghost" href="{{ relLangURL "/people/" }}">{{ $p.hero_cta_secondary }}</a>
+      </div>
+    </div>
+  </section>
+
+  {{ partial "section_heading.html" (dict "eyebrow" $p.overview_eyebrow "title" $p.overview_title "description" $p.overview_description) }}
+
+  <section class="grid-2" style="margin-top:18px;">
+    <div class="card">
+      <h3 class="font-display">{{ $p.mission_title }}</h3>
+      <div class="prose" style="margin-top:10px;">
+        <p>{{ $p.mission_body }}</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="font-display">{{ $p.beliefs_title }}</h3>
+      <div class="prose" style="margin-top:10px;">
+        <ul>
+          {{ range $p.beliefs_items }}
+            <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {{ partial "section_heading.html" (dict "eyebrow" $p.research_eyebrow "title" $p.research_title "description" $p.research_description) }}
+
+  <section class="grid-2" style="margin-top:18px;">
+    <div class="card">
+      <h3 class="font-display">{{ $p.track_eda_title }}</h3>
+      <div class="small muted" style="margin-top:10px;">{{ $p.track_eda_description }}</div>
+      <div class="prose" style="margin-top:12px;">
+        <ul>
+          {{ range $p.track_eda_items }}
+            <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="font-display">{{ $p.track_lca_title }}</h3>
+      <div class="small muted" style="margin-top:10px;">{{ $p.track_lca_description }}</div>
+      <div class="prose" style="margin-top:12px;">
+        <ul>
+          {{ range $p.track_lca_items }}
+            <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {{ partial "section_heading.html" (dict "eyebrow" $p.publications_eyebrow "title" $p.publications_title "description" $p.publications_description) }}
+  <section style="margin-top:18px;">
+    <div class="card-muted" style="text-align:center;">
+      <div class="small muted">{{ $p.publications_card_text }}</div>
+      <div style="margin-top:12px;">
+        <a class="btn btn-primary" href="{{ relLangURL "/publications/" }}">{{ $p.publications_card_button }}</a>
+      </div>
+    </div>
+  </section>
+
+  {{/* Outstanding members (alumni) */}}
+  {{ $alumniSection := .Site.GetPage "section" "alumni" }}
+  {{ if $alumniSection }}
+    {{ $alumni := where $alumniSection.Pages "Lang" $lang }}
+    {{ if gt (len $alumni) 0 }}
+      {{ partial "section_heading.html" (dict
+        "eyebrow" (cond (eq $lang "zh") "成果" "Achievements")
+        "title" (cond (eq $lang "zh") "优秀成员" "Outstanding Members")
+        "description" (cond (eq $lang "zh") "已毕业成员的去向与成果" "Alumni destinations and achievements")
+      ) }}
+      <section class="grid-2" style="margin-top:18px;">
+        {{ range (first 6 $alumni) }}
+          {{ partial "alumni_card.html" (dict "page" . "lang" $lang) }}
+        {{ end }}
+      </section>
+    {{ end }}
+  {{ end }}
+
+  <section class="card-muted" style="margin-top:54px; text-align:center;">
+    <h3 class="font-display" style="margin:0;">{{ $p.join_cta_title }}</h3>
+    <div class="small muted" style="margin-top:10px;">{{ $p.join_cta_body }}</div>
+    <div style="margin-top:14px;">
+      <a class="btn btn-primary" href="{{ relLangURL "/join/" }}">{{ $p.join_cta_button }}</a>
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,12 @@
+{{ define "main" }}
+  {{ partial "section_heading.html" (dict
+    "eyebrow" (cond (eq .Lang "zh") "页面" "Page")
+    "title" .Title
+    "description" (.Params.description | default "")
+  ) }}
+
+  <article class="card prose" style="margin-top:18px;">
+    {{ .Content }}
+  </article>
+{{ end }}
+

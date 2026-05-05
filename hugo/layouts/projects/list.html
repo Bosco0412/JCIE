@@ -1,0 +1,51 @@
+{{ define "main" }}
+  {{ $lang := .Lang }}
+  {{ partial "section_heading.html" (dict
+    "eyebrow" (cond (eq $lang "zh") "项目" "Projects")
+    "title" (cond (eq $lang "zh") "研究项目" "Research Projects")
+    "description" (cond (eq $lang "zh") "真实问题，真实产出" "Real problems, real outputs")
+  ) }}
+
+  {{ $data := .Site.Data.projects.projects }}
+  {{ $eda := where $data "area" "EDA" }}
+  {{ $lca := where $data "area" "LCA" }}
+
+  <section style="margin-top:18px;">
+    <h3 class="font-display" style="margin:0; font-size:18px;">AI for EDA</h3>
+    {{ if gt (len $eda) 0 }}
+      <div class="grid-2" style="margin-top:12px;">
+        {{ range $eda }}
+          {{ partial "project_card.html" (dict "p" . "lang" $lang) }}
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="card-muted" style="margin-top:12px; text-align:center;">
+        <div class="small muted">{{ cond (eq $lang "zh") "EDA 项目待补充" "EDA projects to be added" }}</div>
+      </div>
+    {{ end }}
+  </section>
+
+  <section style="margin-top:28px;">
+    <h3 class="font-display" style="margin:0; font-size:18px;">AI for LCA</h3>
+    {{ if gt (len $lca) 0 }}
+      <div class="grid-2" style="margin-top:12px;">
+        {{ range $lca }}
+          {{ partial "project_card.html" (dict "p" . "lang" $lang) }}
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="card-muted" style="margin-top:12px; text-align:center;">
+        <div class="small muted">{{ cond (eq $lang "zh") "LCA 项目待补充" "LCA projects to be added" }}</div>
+      </div>
+    {{ end }}
+  </section>
+
+  <section class="card-muted" style="margin-top:54px; text-align:center;">
+    <h3 class="font-display" style="margin:0;">{{ cond (eq $lang "zh") "想参与这些项目" "Want to work on these projects" }}</h3>
+    <div class="small muted" style="margin-top:10px;">{{ cond (eq $lang "zh") "加入后直接进入真实项目，我们没有练手期" "Join and enter real projects immediately, no sandbox period" }}</div>
+    <div style="margin-top:14px;">
+      <a class="btn btn-primary" href="{{ relLangURL "/join/" }}">{{ cond (eq $lang "zh") "申请加入" "Apply Now" }}</a>
+    </div>
+  </section>
+{{ end }}
+

@@ -1,0 +1,37 @@
+{{ define "main" }}
+  {{ $lang := .Lang }}
+  {{ partial "section_heading.html" (dict
+    "eyebrow" (.Params.eyebrow | default (cond (eq $lang "zh") "动态" "News"))
+    "title" (.Params.title | default (cond (eq $lang "zh") "新闻动态" "News"))
+    "description" (.Params.description | default "")
+  ) }}
+
+  {{ $posts := .Pages.ByDate.Reverse }}
+  {{ if gt (len $posts) 0 }}
+    <section style="margin-top:18px; display:flex; flex-direction:column; gap:12px;">
+      {{ range $posts }}
+        <article class="card">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
+            <div>
+              <h3 style="margin:0;">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </h3>
+              <div class="tiny" style="margin-top:6px;">{{ .Date.Format "2006-01-02" }}</div>
+              {{ with .Params.summary }}
+                <div class="small muted" style="margin-top:10px;">{{ . }}</div>
+              {{ end }}
+            </div>
+            <a class="btn btn-ghost" style="padding:8px 12px; border-radius:10px; font-size:12px;" href="{{ .RelPermalink }}">
+              {{ cond (eq $lang "zh") "阅读" "Read" }}
+            </a>
+          </div>
+        </article>
+      {{ end }}
+    </section>
+  {{ else }}
+    <div class="card-muted" style="margin-top:18px; text-align:center;">
+      <div class="small muted">{{ cond (eq $lang "zh") "动态待补充" "News to be added" }}</div>
+    </div>
+  {{ end }}
+{{ end }}
+

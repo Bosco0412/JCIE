@@ -1,0 +1,27 @@
+{{ $p := .p }}
+{{ $lang := .lang }}
+
+{{ $title := index $p.title $lang }}
+{{ $summary := index $p.summary $lang }}
+{{ $lead := index $p.lead $lang }}
+{{ $status := (cond (eq $lang "zh") (cond (eq $p.status "ongoing") "进行中" "已完成") (cond (eq $p.status "ongoing") "Ongoing" "Completed")) }}
+{{ $hasLink := and $p.github (ne $p.github "#") }}
+
+<article class="card">
+  <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
+    <div>
+      <div class="tiny" style="display:inline-block; padding:3px 8px; border-radius:999px; background:rgba(15,23,42,0.06);">
+        {{ $status }}
+      </div>
+      <h3 style="margin:10px 0 0;">{{ $title }}</h3>
+      <div class="small muted" style="margin-top:10px;">{{ $summary }}</div>
+      {{ with $lead }}
+        <div class="tiny" style="margin-top:10px;">{{ cond (eq $lang "zh") "负责人" "Lead" }}: {{ . }}</div>
+      {{ end }}
+    </div>
+    {{ if $hasLink }}
+      <a class="btn btn-ghost" style="padding:8px 12px; border-radius:10px; font-size:12px;" href="{{ $p.github }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+    {{ end }}
+  </div>
+</article>
+

@@ -1,0 +1,19 @@
+{{ $site := .Site.Data.site }}
+{{ $lang := .Lang }}
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div>
+        <div><strong>{{ $site.shortName }}</strong> · {{ index $site.fullName $lang }}</div>
+        <div class="tiny">© {{ now.Year }} {{ $site.name }}</div>
+      </div>
+      <div>
+        <a href="mailto:{{ $site.contactEmail }}">{{ $site.contactEmail }}</a>
+        <span> · </span>
+        <a href="{{ $site.githubUrl }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+

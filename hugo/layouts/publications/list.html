@@ -1,0 +1,48 @@
+{{ define "main" }}
+  {{ $lang := .Lang }}
+  {{ partial "section_heading.html" (dict
+    "eyebrow" (.Params.eyebrow | default (cond (eq $lang "zh") "论文" "Publications"))
+    "title" (.Params.title | default (cond (eq $lang "zh") "发表论文" "Published Papers"))
+    "description" (.Params.description | default "")
+  ) }}
+
+  {{ $pubs := .Site.Data.publications.publications | default (slice) }}
+  {{ $eda := sort (where $pubs "area" "EDA") "year" "desc" }}
+  {{ $lca := sort (where $pubs "area" "LCA") "year" "desc" }}
+
+  <section style="margin-top:18px;">
+    <h3 class="font-display" style="margin:0; font-size:18px;">AI for EDA</h3>
+    {{ if gt (len $eda) 0 }}
+      <div style="margin-top:12px; display:flex; flex-direction:column; gap:12px;">
+        {{ range $eda }}
+          {{ partial "pub_data_card.html" (dict "pub" . "lang" $lang) }}
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="card-muted" style="margin-top:12px; text-align:center;">
+        <div class="small muted">{{ cond (eq $lang "zh") "EDA 论文待补充" "EDA publications to be added" }}</div>
+      </div>
+    {{ end }}
+  </section>
+
+  <section style="margin-top:28px;">
+    <h3 class="font-display" style="margin:0; font-size:18px;">AI for LCA</h3>
+    {{ if gt (len $lca) 0 }}
+      <div style="margin-top:12px; display:flex; flex-direction:column; gap:12px;">
+        {{ range $lca }}
+          {{ partial "pub_data_card.html" (dict "pub" . "lang" $lang) }}
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="card-muted" style="margin-top:12px; text-align:center;">
+        <div class="small muted">{{ cond (eq $lang "zh") "LCA 论文待补充" "LCA publications to be added" }}</div>
+      </div>
+    {{ end }}
+  </section>
+
+  {{ with .Params.note }}
+    <section class="card-muted" style="margin-top:28px;">
+      <div class="small muted">{{ . }}</div>
+    </section>
+  {{ end }}
+{{ end }}

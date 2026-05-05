@@ -1,0 +1,48 @@
+{{ $p := .page }}
+{{ $compact := .compact }}
+{{ $name := $p.Params.name }}
+{{ $title := $p.Params.title }}
+{{ $year := $p.Params.year }}
+{{ $area := $p.Params.researchArea }}
+{{ $photo := $p.Params.photo }}
+{{ $github := $p.Params.github }}
+{{ $email := $p.Params.email }}
+
+{{ if $compact }}
+  <article class="card">
+    {{ if $photo }}
+      <img src="{{ $photo | relURL }}" alt="{{ $name }}" width="48" height="48" loading="lazy" decoding="async" style="border-radius:12px; background:#f1f5f9; object-fit:cover;">
+    {{ else }}
+      <div style="width:48px;height:48px;border-radius:12px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-weight:600;color:rgba(15,23,42,0.45);">
+        {{ if $name }}{{ slicestr $name 0 1 }}{{ else }}?{{ end }}
+      </div>
+    {{ end }}
+    <h3 style="margin:12px 0 0;">{{ $name }}</h3>
+    {{ with $year }}<div class="tiny" style="margin-top:4px;">{{ . }}</div>{{ end }}
+    {{ with $area }}<div class="small muted" style="margin-top:8px;">{{ . }}</div>{{ end }}
+    {{ with $github }}<div style="margin-top:10px;"><a class="tiny" href="{{ . }}" target="_blank" rel="noopener noreferrer">GitHub</a></div>{{ end }}
+  </article>
+{{ else }}
+  <article class="card">
+    <div style="display:flex; gap:14px;">
+      {{ if $photo }}
+        <img src="{{ $photo | relURL }}" alt="{{ $name }}" width="56" height="56" loading="lazy" decoding="async" style="border-radius:14px; background:#f1f5f9; object-fit:cover;">
+      {{ else }}
+        <div style="width:56px;height:56px;border-radius:14px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-weight:600;color:rgba(15,23,42,0.45);">
+          {{ if $name }}{{ slicestr $name 0 1 }}{{ else }}?{{ end }}
+        </div>
+      {{ end }}
+      <div style="flex:1;">
+        <h3 style="margin:0;">{{ $name }}</h3>
+        {{ with $title }}<div class="small muted" style="margin-top:4px;">{{ . }}</div>{{ end }}
+        {{ if $p.Content }}
+          <div class="prose small" style="margin-top:10px;">{{ $p.Content }}</div>
+        {{ end }}
+        <div style="margin-top:10px; display:flex; gap:14px; flex-wrap:wrap;">
+          {{ with $github }}<a class="tiny" href="{{ . }}" target="_blank" rel="noopener noreferrer">GitHub</a>{{ end }}
+          {{ with $email }}<a class="tiny" href="mailto:{{ . }}">Email</a>{{ end }}
+        </div>
+      </div>
+    </div>
+  </article>
+{{ end }}

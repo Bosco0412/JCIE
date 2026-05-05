@@ -1,0 +1,11 @@
+{{ define "main" }}
+  {{ partial "section_heading.html" (dict
+    "eyebrow" (cond (eq .Lang "zh") "论文" "Publication")
+    "title" (.Params.title | default .Title)
+    "description" (printf "%s, %v" (.Params.venue | default "") (.Params.year | default ""))
+  ) }}
+  <article class="card prose" style="margin-top:18px;">
+    {{ .Content }}
+  </article>
+{{ end }}
+

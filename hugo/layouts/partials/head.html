@@ -1,0 +1,22 @@
+{{ $site := .Site.Data.site }}
+{{ $lang := .Lang }}
+{{ $metaTitle := index $site.meta.title $lang | default $site.name }}
+{{ $metaDesc := index $site.meta.description $lang | default "" }}
+
+{{ $title := $metaTitle }}
+{{ if and (not .IsHome) .Title }}
+  {{ $title = printf "%s | %s" .Title $metaTitle }}
+{{ end }}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $metaDesc }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+{{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+

@@ -1,0 +1,25 @@
+baseURL = "https://icelab-jcie.github.io/JCIE_Website/"
+title = "SZU-UoS JCIE"
+languageCode = "zh"
+
+# Put zh/en under /zh/ and /en/ (including the default language).
+defaultContentLanguage = "zh"
+defaultContentLanguageInSubdir = true
+
+enableRobotsTXT = true
+
+[languages]
+  [languages.zh]
+    languageName = "中文"
+    weight = 1
+
+  [languages.en]
+    languageName = "English"
+    weight = 2
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # Allow inline HTML if needed in legacy Markdown content.
+      unsafe = true
+

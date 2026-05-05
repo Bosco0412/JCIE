@@ -17,6 +17,11 @@
 /.next/
 /out/
 
+# hugo
+/hugo/public/
+/hugo/resources/
+.hugo_build.lock
+
 # production
 /build
 

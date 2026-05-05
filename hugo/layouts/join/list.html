@@ -1,0 +1,33 @@
+{{ define "main" }}
+  {{ $lang := .Lang }}
+  {{ partial "section_heading.html" (dict
+    "eyebrow" (.Params.eyebrow | default (cond (eq $lang "zh") "加入" "Join"))
+    "title" (.Params.title | default (cond (eq $lang "zh") "申请加入" "Apply"))
+    "description" (.Params.description | default "")
+  ) }}
+
+  {{ $site := .Site.Data.site }}
+  {{ $email := $site.contactEmail }}
+
+  {{ $content := .Content | replaceRE "\\{\\{contactEmail\\}\\}" $email }}
+  <article class="card prose" style="margin-top:18px;">
+    {{ $content | safeHTML }}
+  </article>
+
+  <section class="card-muted" style="margin-top:18px;">
+    <div class="small muted">
+      {{ if eq $lang "zh" }}
+        快捷申请：点击下方按钮将自动打开邮件客户端。
+      {{ else }}
+        Quick apply: the button below opens your email client.
+      {{ end }}
+    </div>
+    <div style="margin-top:12px;">
+      {{ $subject := .Params.email_subject_template | default (cond (eq $lang "zh") "【加入 JCIE】你的名字" "[Join JCIE] Your Name") }}
+      <a class="btn btn-primary" href="mailto:{{ $email }}?subject={{ $subject | urlquery }}">
+        {{ .Params.email_button_label | default (cond (eq $lang "zh") "发送申请邮件" "Send Application Email") }}
+      </a>
+    </div>
+  </section>
+{{ end }}
+

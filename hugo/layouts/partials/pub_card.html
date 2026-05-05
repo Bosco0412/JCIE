@@ -1,0 +1,28 @@
+{{ $lang := .Lang }}
+{{ $title := .Params.title | default .Title }}
+{{ $authors := .Params.authors | default (slice) }}
+{{ $venue := .Params.venue | default "" }}
+{{ $year := .Params.year | default "" }}
+{{ $link := .Params.link | default "" }}
+
+<article class="card">
+  <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
+    <div>
+      <h3 style="margin:0;">{{ $title }}</h3>
+      {{ if $authors }}
+        <div class="small muted" style="margin-top:10px;">
+          {{ delimit $authors ", " }}
+        </div>
+      {{ end }}
+      <div class="tiny" style="margin-top:6px;">
+        {{ if $venue }}{{ $venue }}{{ end }}{{ if and $venue $year }}, {{ end }}{{ $year }}
+      </div>
+    </div>
+    {{ if and $link (ne $link "#") }}
+      <a class="btn btn-ghost" style="padding:8px 12px; border-radius:10px; font-size:12px;" href="{{ $link }}" target="_blank" rel="noopener noreferrer">
+        {{ cond (eq $lang "zh") "查看" "View" }}
+      </a>
+    {{ end }}
+  </div>
+</article>
+

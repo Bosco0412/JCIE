@@ -1,0 +1,25 @@
+{{ define "main" }}
+  {{ partial "section_heading.html" (dict
+    "eyebrow" (.Params.eyebrow | default (cond (eq .Lang "zh") "列表" "List"))
+    "title" (.Title | default (cond (eq .Lang "zh") "内容" "Content"))
+    "description" (.Params.description | default "")
+  ) }}
+
+  {{ $pages := .Pages }}
+  {{ if gt (len $pages) 0 }}
+    <div style="margin-top:18px;" class="grid-2">
+      {{ range $pages }}
+        <a class="card" href="{{ .RelPermalink }}">
+          <h3>{{ .Title }}</h3>
+          {{ with .Date }}<div class="tiny" style="margin-top:6px;">{{ .Format "2006-01-02" }}</div>{{ end }}
+          {{ with .Summary }}<div class="small muted" style="margin-top:10px;">{{ . }}</div>{{ end }}
+        </a>
+      {{ end }}
+    </div>
+  {{ else }}
+    <div class="card-muted" style="margin-top:18px; text-align:center;">
+      <div class="small muted">{{ cond (eq .Lang "zh") "暂无内容" "Nothing yet" }}</div>
+    </div>
+  {{ end }}
+{{ end }}
+

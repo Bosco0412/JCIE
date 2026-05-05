@@ -1,0 +1,19 @@
+{{ $lang := .Lang }}
+{{ $other := cond (eq $lang "zh") "en" "zh" }}
+{{ $otherHref := (relLangURL "/") }}
+{{ $matches := where .AllTranslations "Lang" $other }}
+{{ with $matches }}
+  {{ $otherHref = (index . 0).RelPermalink }}
+{{ end }}
+
+<span class="lang-pill" aria-label="Language switch">
+  {{ if eq $lang "zh" }}
+    <a href="{{ .RelPermalink }}">中</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="{{ $otherHref }}">EN</a>
+  {{ else }}
+    <a href="{{ $otherHref }}">中</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="{{ .RelPermalink }}">EN</a>
+  {{ end }}
+</span>
