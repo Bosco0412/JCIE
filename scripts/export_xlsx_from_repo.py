@@ -92,6 +92,24 @@ def _build_people_sheet_rows(
             domain_str = ";".join([_strip(x) for x in domain if _strip(x)])
         else:
             domain_str = _strip(domain)
+        links = p.get("links") or []
+        homepage_url = ""
+        scholar_url = ""
+        github_url = ""
+        if isinstance(links, list):
+            for it in links:
+                if not isinstance(it, dict):
+                    continue
+                typ = _strip(it.get("type")).lower()
+                url = _strip(it.get("url"))
+                if not url:
+                    continue
+                if typ == "homepage" and not homepage_url:
+                    homepage_url = url
+                elif typ == "scholar" and not scholar_url:
+                    scholar_url = url
+                elif typ == "github" and not github_url:
+                    github_url = url
         rows.append(
             {
                 "id": _strip(p.get("id")),
@@ -102,6 +120,9 @@ def _build_people_sheet_rows(
                 "title_zh": _strip(title.get("zh")),
                 "join_year": p.get("join_year") or "",
                 "domain": domain_str,
+                "homepage_url": homepage_url,
+                "scholar_url": scholar_url,
+                "github_url": github_url,
                 "photo": _strip(p.get("photo")),
                 "bio_en": _strip(bio.get("en")),
                 "bio_zh": _strip(bio.get("zh")),
@@ -268,6 +289,9 @@ def main(argv: List[str]) -> int:
         "title_zh",
         "join_year",
         "domain",
+        "homepage_url",
+        "scholar_url",
+        "github_url",
         "photo",
         "bio_en",
         "bio_zh",

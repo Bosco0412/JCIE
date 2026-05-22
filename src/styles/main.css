@@ -640,6 +640,39 @@ img[width][height] { height: auto; }
   align-items: flex-start;
 }
 .person-card--detail .person-card-body { flex: 1; min-width: 0; }
+.person-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.person-card-links {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.person-link-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: rgba(255,255,255,0.80);
+  color: rgba(15, 23, 42, 0.72);
+  transition: border-color 150ms ease, background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+.person-link-btn:hover {
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(11, 95, 255, 0.20);
+  box-shadow: 0 22px 50px -48px rgba(2, 6, 23, 0.75);
+  transform: translateY(-1px);
+}
+.person-link-btn:focus-visible {
+  outline: 2px solid rgba(11, 95, 255, 0.35);
+  outline-offset: 3px;
+}
 .person-card--detail .person-card-name { margin: 0; }
 .person-card--detail .person-card-title { margin-top: 4px; }
 .person-card--detail .person-card-bio { margin-top: 10px; }

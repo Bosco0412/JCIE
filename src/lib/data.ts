@@ -22,6 +22,7 @@ export type Person = {
   name?: { zh?: string; en?: string };
   title?: { zh?: string; en?: string };
   domain?: ("EDA" | "LCA" | string)[] | "EDA" | "LCA" | string;
+  links?: { type: string; url: string }[];
   join_year?: number;
   photo?: string;
   bio?: { zh?: string; en?: string };
