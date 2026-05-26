@@ -210,6 +210,7 @@ def _build_projects_sheet_rows(projects_yaml: Dict[str, Any]) -> List[Dict[str, 
         lead = p.get("lead") or {}
         title = p.get("title") or {}
         summary = p.get("summary") or {}
+        body = p.get("body") or {}
         rows.append(
             {
                 "id": _strip(p.get("id")),
@@ -223,6 +224,9 @@ def _build_projects_sheet_rows(projects_yaml: Dict[str, Any]) -> List[Dict[str, 
                 "summary_en": _strip(summary.get("en")),
                 "summary_zh": _strip(summary.get("zh")),
                 "start_year": p.get("start_year") or "",
+                "cover": _strip(p.get("cover")),
+                "body_en": _strip(body.get("en")),
+                "body_zh": _strip(body.get("zh")),
             }
         )
     rows.sort(key=lambda r: r["id"])
@@ -320,6 +324,9 @@ def main(argv: List[str]) -> int:
         "summary_en",
         "summary_zh",
         "start_year",
+        "cover",
+        "body_en",
+        "body_zh",
     ]
     _write_sheet(ws_projects, headers=proj_headers, rows=proj_rows)
 

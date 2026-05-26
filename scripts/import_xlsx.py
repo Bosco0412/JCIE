@@ -397,6 +397,9 @@ def _parse_projects(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         summary_en = _strip(r.get("summary_en"))
         summary_zh = _strip(r.get("summary_zh"))
         start_year = _to_int(r.get("start_year"), ctx=f"projects row {i} (id={pid}) start_year")
+        cover = _strip(r.get("cover"))
+        body_en = _strip(r.get("body_en"))
+        body_zh = _strip(r.get("body_zh"))
 
         if not all([lead_en, lead_zh, title_en, title_zh, summary_en, summary_zh]):
             raise ImportErrorExit(f"projects row {i} (id={pid}): missing required bilingual fields")
@@ -412,6 +415,10 @@ def _parse_projects(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         }
         if start_year is not None:
             proj["start_year"] = start_year
+        if cover:
+            proj["cover"] = cover
+        if body_en or body_zh:
+            proj["body"] = {"en": body_en, "zh": body_zh}
         projects.append(proj)
 
     # Stable ordering

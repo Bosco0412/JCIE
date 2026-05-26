@@ -56,6 +56,8 @@ export type Project = {
   lead?: { zh?: string; en?: string };
   title?: { zh?: string; en?: string };
   summary?: { zh?: string; en?: string };
+  cover?: string;
+  body?: { zh?: string; en?: string };
   start_year?: number;
 };
 

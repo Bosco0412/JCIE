@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mock — Projects List (Image-first cards)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <style>
+      :root { color-scheme: light; }
+      body { margin: 0; padding: 36px 18px; background: #f6f7fb; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: #0f172a; }
+      .wrap { max-width: 1100px; margin: 0 auto; }
+      .top { display:flex; justify-content:space-between; align-items:flex-end; gap:14px; flex-wrap:wrap; }
+      .eyebrow { font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(15, 23, 42, 0.55); }
+      h1 { margin: 10px 0 0; font-size: 34px; letter-spacing: -0.03em; }
+      .desc { margin-top: 10px; max-width: 72ch; color: rgba(15, 23, 42, 0.68); }
+      .grid { margin-top: 18px; display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+      @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
+      .cardlink { text-decoration:none; color: inherit; display:block; }
+      .pcard {
+        border: 1px solid rgba(148, 163, 184, 0.34);
+        background: rgba(255,255,255,0.92);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 24px 70px -72px rgba(2, 6, 23, 0.70);
+        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      }
+      .pcard:hover {
+        transform: translateY(-2px);
+        border-color: rgba(11, 95, 255, 0.16);
+        box-shadow: 0 34px 90px -78px rgba(2, 6, 23, 0.75);
+      }
+      .cover {
+        aspect-ratio: 16 / 9;
+        background: linear-gradient(135deg, rgba(11,95,255,0.18), rgba(20,184,166,0.14));
+        position: relative;
+      }
+      .cover img { width:100%; height:100%; object-fit: cover; display:block; }
+      .body { padding: 14px 16px 16px; }
+      .title { margin: 0; font-size: 16px; letter-spacing: -0.01em; }
+      .summary { margin-top: 8px; color: rgba(15, 23, 42, 0.68); font-size: 13px; line-height: 1.45; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient: vertical; overflow:hidden; }
+      .meta { margin-top: 12px; display:flex; gap: 8px; flex-wrap: wrap; }
+      .chip { display:inline-flex; align-items:center; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.36); background: rgba(255,255,255,0.75); color: rgba(15, 23, 42, 0.72); font-size: 12px; font-weight: 650; white-space: nowrap; }
+      .chip--blue { border-color: rgba(11,95,255,0.18); background: rgba(11,95,255,0.08); color: rgba(11,95,255,0.95); }
+      .chip--teal { border-color: rgba(20,184,166,0.20); background: rgba(20,184,166,0.10); color: rgba(20,184,166,0.95); }
+      .badge { display:inline-flex; align-items:center; padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.38); background: rgba(248, 250, 252, 0.92); color: rgba(15, 23, 42, 0.68); font-size: 12px; font-weight: 650; }
+      .badge--ongoing { background: rgba(34, 197, 94, 0.14); border-color: rgba(34, 197, 94, 0.30); color: rgb(21, 128, 61); }
+      .badge--completed { background: rgba(148, 163, 184, 0.18); border-color: rgba(148, 163, 184, 0.30); color: rgba(15, 23, 42, 0.62); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">
+        <div>
+          <div class="eyebrow">Projects</div>
+          <h1>Research Projects</h1>
+          <div class="desc">Image-first cards (cover → title → short summary). Click a card to open the internal detail page.</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <a class="cardlink" href="./project-detail.html">
+          <article class="pcard">
+            <div class="cover"></div>
+            <div class="body">
+              <h3 class="title">ASTRA: Automatic Sizing with Reasoning Agents</h3>
+              <div class="summary">A practical framework for analog sizing using agentic reasoning and learned priors for fast, reliable results.</div>
+              <div class="meta">
+                <span class="badge badge--ongoing">Ongoing</span>
+                <span class="chip chip--blue">EDA</span>
+                <span class="chip">2026</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <a class="cardlink" href="./project-detail.html">
+          <article class="pcard">
+            <div class="cover"></div>
+            <div class="body">
+              <h3 class="title">OpenACMv2: Accuracy-Constrained Co-Optimization</h3>
+              <div class="summary">A co-optimization workflow that balances accuracy constraints with performance, enabling robust design iterations.</div>
+              <div class="meta">
+                <span class="badge badge--completed">Completed</span>
+                <span class="chip chip--blue">EDA</span>
+                <span class="chip">2025</span>
+              </div>
+            </div>
+          </article>
+        </a>
+
+        <a class="cardlink" href="./project-detail.html">
+          <article class="pcard">
+            <div class="cover"></div>
+            <div class="body">
+              <h3 class="title">SemaNet: Bridging Words and Numbers for LCA</h3>
+              <div class="summary">Predict missing environmental data by aligning textual context with numerical signals for stronger LCA pipelines.</div>
+              <div class="meta">
+                <span class="badge badge--ongoing">Ongoing</span>
+                <span class="chip chip--teal">LCA</span>
+                <span class="chip">2025</span>
+              </div>
+            </div>
+          </article>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,73 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import { languages, t, type Lang } from "@/lib/i18n";
+import { getProjects, type Project } from "@/lib/data";
+import { langPath, withBase } from "@/lib/urls";
+import { renderMarkdown } from "@/lib/markdown";
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  const paths = [];
+  for (const lang of languages) {
+    for (const project of projects) {
+      paths.push({ params: { lang, id: project.id }, props: { project } });
+    }
+  }
+  return paths;
+}
+
+const lang = Astro.params.lang as Lang;
+const { project } = Astro.props as { project: Project };
+
+const title = project.title?.[lang] ?? "";
+const summary = project.summary?.[lang] ?? "";
+const area = project.area ?? "";
+const year = project.start_year ? String(project.start_year) : "";
+const isOngoing = project.status === "ongoing";
+const status = t(lang, isOngoing ? "进行中" : "已完成", isOngoing ? "Ongoing" : "Completed");
+const badgeClass = isOngoing ? "badge badge--ongoing" : "badge badge--completed";
+const cover = project.cover ? withBase(project.cover.replace(/^\//, "")) : "";
+const bodyRaw = project.body?.[lang] ?? "";
+const bodyHtml = bodyRaw ? renderMarkdown(bodyRaw) : "";
+const hasGithub = Boolean(project.github && project.github !== "#");
+---
+
+<BaseLayout lang={lang} title={title}>
+  <SectionHeading
+    eyebrow={t(lang, "项目", "Projects")}
+    title={title || t(lang, "项目详情", "Project")}
+    description={summary}
+  />
+
+  <div style="margin-top:14px;">
+    <a class="tiny" href={langPath(lang, "/projects/")}>{t(lang, "← 返回列表", "← Back to Projects")}</a>
+  </div>
+
+  <section class="card" style="margin-top:18px; overflow:hidden; padding:0;">
+    {cover ? (
+      <div class="project-detail-cover" aria-hidden="true">
+        <img src={cover} alt="" loading="lazy" decoding="async" />
+      </div>
+    ) : null}
+
+    <div style="padding:18px;">
+      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+        <span class={badgeClass}>{status}</span>
+        {area ? <span class={`chip ${area === "EDA" ? "chip--blue" : area === "LCA" ? "chip--teal" : ""}`}>{area}</span> : null}
+        {year ? <span class="chip">{year}</span> : null}
+      </div>
+
+      {hasGithub ? (
+        <div style="margin-top:14px;">
+          <a class="btn btn-ghost" href={project.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      ) : null}
+    </div>
+  </section>
+
+  <section class="card prose" style="margin-top:18px;">
+    {bodyHtml ? <div set:html={bodyHtml} /> : <div class="small muted">{t(lang, "暂无内容", "Nothing yet")}</div>}
+  </section>
+</BaseLayout>
+
