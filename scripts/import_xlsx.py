@@ -198,6 +198,9 @@ def _parse_people(rows: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], Peo
         join_year = _to_int(r.get("join_year"), ctx=f"people row {i} (id={pid}) join_year")
         domain_list = _split_domain(r.get("domain"))
         photo = _strip(r.get("photo"))
+        homepage_url = _strip(r.get("homepage_url"))
+        scholar_url = _strip(r.get("scholar_url"))
+        github_url = _strip(r.get("github_url"))
 
         title_en = _strip(r.get("title_en"))
         title_zh = _strip(r.get("title_zh"))
@@ -235,6 +238,15 @@ def _parse_people(rows: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], Peo
             person["domain"] = domain_list if len(domain_list) > 1 else domain_list[0]
         if photo:
             person["photo"] = photo
+        links: List[Dict[str, str]] = []
+        if homepage_url:
+            links.append({"type": "homepage", "url": homepage_url})
+        if scholar_url:
+            links.append({"type": "scholar", "url": scholar_url})
+        if github_url:
+            links.append({"type": "github", "url": github_url})
+        if links:
+            person["links"] = links
         bio_obj = {"en": bio_en, "zh": bio_zh}
         if bio_en or bio_zh:
             person["bio"] = bio_obj
@@ -385,6 +397,9 @@ def _parse_projects(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         summary_en = _strip(r.get("summary_en"))
         summary_zh = _strip(r.get("summary_zh"))
         start_year = _to_int(r.get("start_year"), ctx=f"projects row {i} (id={pid}) start_year")
+        cover = _strip(r.get("cover"))
+        body_en = _strip(r.get("body_en"))
+        body_zh = _strip(r.get("body_zh"))
 
         if not all([lead_en, lead_zh, title_en, title_zh, summary_en, summary_zh]):
             raise ImportErrorExit(f"projects row {i} (id={pid}): missing required bilingual fields")
@@ -400,6 +415,10 @@ def _parse_projects(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         }
         if start_year is not None:
             proj["start_year"] = start_year
+        if cover:
+            proj["cover"] = cover
+        if body_en or body_zh:
+            proj["body"] = {"en": body_en, "zh": body_zh}
         projects.append(proj)
 
     # Stable ordering

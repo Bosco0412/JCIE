@@ -92,6 +92,24 @@ def _build_people_sheet_rows(
             domain_str = ";".join([_strip(x) for x in domain if _strip(x)])
         else:
             domain_str = _strip(domain)
+        links = p.get("links") or []
+        homepage_url = ""
+        scholar_url = ""
+        github_url = ""
+        if isinstance(links, list):
+            for it in links:
+                if not isinstance(it, dict):
+                    continue
+                typ = _strip(it.get("type")).lower()
+                url = _strip(it.get("url"))
+                if not url:
+                    continue
+                if typ == "homepage" and not homepage_url:
+                    homepage_url = url
+                elif typ == "scholar" and not scholar_url:
+                    scholar_url = url
+                elif typ == "github" and not github_url:
+                    github_url = url
         rows.append(
             {
                 "id": _strip(p.get("id")),
@@ -102,6 +120,9 @@ def _build_people_sheet_rows(
                 "title_zh": _strip(title.get("zh")),
                 "join_year": p.get("join_year") or "",
                 "domain": domain_str,
+                "homepage_url": homepage_url,
+                "scholar_url": scholar_url,
+                "github_url": github_url,
                 "photo": _strip(p.get("photo")),
                 "bio_en": _strip(bio.get("en")),
                 "bio_zh": _strip(bio.get("zh")),
@@ -189,6 +210,7 @@ def _build_projects_sheet_rows(projects_yaml: Dict[str, Any]) -> List[Dict[str, 
         lead = p.get("lead") or {}
         title = p.get("title") or {}
         summary = p.get("summary") or {}
+        body = p.get("body") or {}
         rows.append(
             {
                 "id": _strip(p.get("id")),
@@ -202,6 +224,9 @@ def _build_projects_sheet_rows(projects_yaml: Dict[str, Any]) -> List[Dict[str, 
                 "summary_en": _strip(summary.get("en")),
                 "summary_zh": _strip(summary.get("zh")),
                 "start_year": p.get("start_year") or "",
+                "cover": _strip(p.get("cover")),
+                "body_en": _strip(body.get("en")),
+                "body_zh": _strip(body.get("zh")),
             }
         )
     rows.sort(key=lambda r: r["id"])
@@ -268,6 +293,9 @@ def main(argv: List[str]) -> int:
         "title_zh",
         "join_year",
         "domain",
+        "homepage_url",
+        "scholar_url",
+        "github_url",
         "photo",
         "bio_en",
         "bio_zh",
@@ -296,6 +324,9 @@ def main(argv: List[str]) -> int:
         "summary_en",
         "summary_zh",
         "start_year",
+        "cover",
+        "body_en",
+        "body_zh",
     ]
     _write_sheet(ws_projects, headers=proj_headers, rows=proj_rows)
 

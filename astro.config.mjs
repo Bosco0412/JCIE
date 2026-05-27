@@ -6,6 +6,7 @@ export default defineConfig({
   site: "https://icelab-jcie.github.io",
   base: "/JCIE_Website",
   trailingSlash: "always",
+  viewTransitions: true,
   vite: {
     resolve: {
       alias: {

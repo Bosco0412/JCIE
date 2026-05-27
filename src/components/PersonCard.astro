@@ -22,6 +22,15 @@ const title = person.title?.[lang] ?? person.title?.en ?? "";
 const joinYear = person.join_year;
 const bio = person.bio?.[lang] ?? "";
 const photo = person.photo ? withBase(person.photo.replace(/^\//, "")) : "";
+const links = Array.isArray((person as any).links) ? ((person as any).links as { type?: string; url?: string }[]) : [];
+const mentorLinks = (person as any).role === "mentor" ? links.filter((x) => x && x.url) : [];
+function labelForLinkType(typ: string): string {
+  const t0 = String(typ || "").toLowerCase();
+  if (t0 === "scholar") return t(lang, "Google Scholar", "Google Scholar");
+  if (t0 === "homepage") return t(lang, "个人主页", "Homepage");
+  if (t0 === "github") return "GitHub";
+  return t(lang, "链接", "Link");
+}
 
 function initialFromName(n: string): string {
   const parts = n.split(/\s+/).filter(Boolean);
@@ -64,7 +73,42 @@ const bioHtml = bio ? renderMarkdown(bio) : "";
         </div>
       </div>
       <div class="person-card-body">
-        <h3 class="person-card-name">{name}</h3>
+        <div class="person-card-head">
+          <h3 class="person-card-name">{name}</h3>
+          {mentorLinks.length ? (
+            <div class="person-card-links" aria-label={t(lang, "外部链接", "External links")}>
+              {mentorLinks.map((lnk) => (
+                <a
+                  class="person-link-btn"
+                  href={lnk.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={labelForLinkType(String(lnk.type || ""))}
+                  aria-label={labelForLinkType(String(lnk.type || ""))}
+                >
+                  {String(lnk.type || "").toLowerCase() === "scholar" ? (
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 3 2 8l10 5 10-5-10-5Z"></path>
+                      <path d="M6 10.5V16c0 2 3 3.5 6 3.5s6-1.5 6-3.5v-5.5"></path>
+                    </svg>
+                  ) : String(lnk.type || "").toLowerCase() === "github" ? (
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                      <path
+                        fill="currentColor"
+                        d="M12 .5C5.73.5.75 5.7.75 12.17c0 5.2 3.44 9.61 8.2 11.17.6.12.82-.27.82-.6v-2.2c-3.34.75-4.04-1.47-4.04-1.47-.54-1.44-1.33-1.82-1.33-1.82-1.09-.77.08-.76.08-.76 1.2.09 1.84 1.29 1.84 1.29 1.07 1.9 2.8 1.35 3.48 1.03.11-.8.41-1.35.75-1.66-2.66-.31-5.46-1.37-5.46-6.09 0-1.34.46-2.43 1.22-3.28-.12-.31-.53-1.57.12-3.27 0 0 1-.33 3.3 1.25a11.1 11.1 0 0 1 3-.42c1.02 0 2.05.14 3 .42 2.3-1.58 3.3-1.25 3.3-1.25.65 1.7.24 2.96.12 3.27.76.85 1.22 1.94 1.22 3.28 0 4.73-2.8 5.77-5.47 6.08.42.38.8 1.12.8 2.26v3.35c0 .33.22.72.83.6 4.76-1.56 8.2-5.98 8.2-11.17C23.25 5.7 18.27.5 12 .5Z"
+                      />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1"></path>
+                      <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1"></path>
+                    </svg>
+                  )}
+                </a>
+              ))}
+            </div>
+          ) : null}
+        </div>
         {title ? <div class="small muted person-card-title">{title}</div> : null}
         {bioHtml ? <div class="prose small person-card-bio" set:html={bioHtml} /> : null}
         {joinYear ? <div class="tiny person-card-year">{joinYear}</div> : null}

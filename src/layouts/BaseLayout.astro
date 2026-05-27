@@ -6,6 +6,7 @@ import SiteAtmosphere from "../components/SiteAtmosphere.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { withBase } from "../lib/urls";
+import { ViewTransitions } from "astro:transitions";
 
 type Props = {
   lang: Lang;
@@ -32,6 +33,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={metaDesc} />
     <link rel="canonical" href={canonical.toString()} />
     <link rel="icon" href={withBase("/favicon.ico")} />
+    <ViewTransitions />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,3 +53,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <Footer lang={lang} />
   </body>
 </html>
+
+<script>
+  const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (!mq.matches) {
+    const cards = document.querySelectorAll("main .card");
+    if (cards.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              const parent = entry.target.parentElement;
+              const siblings = parent ? Array.from(parent.querySelectorAll(":scope > .card")) : [];
+              const idx = siblings.indexOf(entry.target);
+              entry.target.style.setProperty("--enter-delay", `${idx * 60}ms`);
+              entry.target.setAttribute("data-enter", "");
+              requestAnimationFrame(() => entry.target.classList.add("in-view"));
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: "0px 0px -40px 0px" },
+      );
+      for (const card of cards) observer.observe(card);
+    }
+  }
+</script>

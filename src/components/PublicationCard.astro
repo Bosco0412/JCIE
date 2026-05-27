@@ -12,26 +12,41 @@ const hasLink = Boolean(pub.link && pub.link !== "#");
 const authors = pub.authors ?? [];
 ---
 
-<article class="card">
-  <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
-    <div style="min-width:0;">
-      <h3 style="margin:0;">{pub.title}</h3>
+{hasLink ? (
+  <a class="card pub-card" href={pub.link} target="_blank" rel="noopener noreferrer">
+    <div class="pub-card-body">
+      <h3 class="pub-card-title">{pub.title}</h3>
 
       {(venue || year) ? (
-        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+        <div class="pub-card-meta">
           {venue ? <span class="badge badge--pub">{venue}</span> : null}
           {year ? <span class="badge">{year}</span> : null}
         </div>
       ) : null}
 
-      {authors.length ? <div class="small muted" style="margin-top:10px;">{authors.join(", ")}</div> : null}
+      {authors.length ? <div class="small muted pub-card-authors">{authors.join(", ")}</div> : null}
     </div>
 
-    {hasLink ? (
-      <a class="btn btn-ghost" style="padding:8px 12px; border-radius:10px; font-size:12px;" href={pub.link} target="_blank" rel="noopener noreferrer">
+    <div class="pub-card-action">
+      <span class="btn btn-ghost pub-card-btn">
         {t(lang, "查看", "View")}
-      </a>
-    ) : null}
-  </div>
-</article>
+        <span aria-hidden="true" class="pub-card-arrow">→</span>
+      </span>
+    </div>
+  </a>
+) : (
+  <article class="card pub-card">
+    <div class="pub-card-body">
+      <h3 class="pub-card-title">{pub.title}</h3>
 
+      {(venue || year) ? (
+        <div class="pub-card-meta">
+          {venue ? <span class="badge badge--pub">{venue}</span> : null}
+          {year ? <span class="badge">{year}</span> : null}
+        </div>
+      ) : null}
+
+      {authors.length ? <div class="small muted pub-card-authors">{authors.join(", ")}</div> : null}
+    </div>
+  </article>
+)}

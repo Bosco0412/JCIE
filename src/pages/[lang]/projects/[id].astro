@@ -1,0 +1,123 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import { languages, t, type Lang } from "@/lib/i18n";
+import { getProjects, type Project } from "@/lib/data";
+import { langPath, withBase } from "@/lib/urls";
+import { renderMarkdown } from "@/lib/markdown";
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  const paths = [];
+  for (const lang of languages) {
+    for (const project of projects) {
+      paths.push({ params: { lang, id: project.id }, props: { project } });
+    }
+  }
+  return paths;
+}
+
+const lang = Astro.params.lang as Lang;
+const { project } = Astro.props as { project: Project };
+
+const projects = await getProjects();
+const currentIndex = projects.findIndex((p) => p.id === project.id);
+const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
+const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+
+const title = project.title?.[lang] ?? "";
+const summary = project.summary?.[lang] ?? "";
+const area = project.area ?? "";
+const year = project.start_year ? String(project.start_year) : "";
+const isOngoing = project.status === "ongoing";
+const statusText = t(lang, isOngoing ? "进行中" : "已完成", isOngoing ? "Ongoing" : "Completed");
+const badgeClass = isOngoing ? "badge badge--ongoing" : "badge badge--completed";
+const cover = project.cover ? withBase(project.cover.replace(/^\//, "")) : "";
+const bodyRaw = project.body?.[lang] ?? "";
+const bodyHtml = bodyRaw ? renderMarkdown(bodyRaw) : "";
+const hasGithub = Boolean(project.github && project.github !== "#");
+
+const areaColor = area === "EDA" ? "blue" : area === "LCA" ? "teal" : "";
+const lead = project.lead?.[lang] ?? "";
+---
+
+<BaseLayout lang={lang} title={title}>
+  <SectionHeading
+    eyebrow={t(lang, "项目", "Projects")}
+    title={title || t(lang, "项目详情", "Project")}
+    description={summary}
+  />
+
+  <div style="margin-top:14px;">
+    <a class="tiny project-detail-back" href={langPath(lang, "/projects/")}>
+      <span aria-hidden="true" class="project-detail-back-arrow">←</span>
+      {t(lang, "返回列表", "Back to Projects")}
+    </a>
+  </div>
+
+  <!-- Cover image -->
+  <div class="project-detail-cover-wrap" style="margin-top:18px;">
+    {cover ? (
+      <div class="project-detail-cover" aria-hidden="true">
+        <img src={cover} alt="" loading="lazy" decoding="async" />
+      </div>
+    ) : (
+      <div class="project-detail-cover project-detail-cover--placeholder" aria-hidden="true" />
+    )}
+  </div>
+
+  <!-- Metadata bar -->
+  <div class="project-detail-bar">
+    <div class="project-detail-bar-badges">
+      <span class="project-detail-status">
+        <span class={`project-detail-status-dot project-detail-status-dot--${isOngoing ? "ongoing" : "completed"}`} aria-hidden="true" />
+        {statusText}
+      </span>
+      {area ? <span class={`chip ${areaColor ? `chip--${areaColor}` : ""}`}>{area}</span> : null}
+      {year ? <span class="chip">{year}</span> : null}
+    </div>
+
+    <div class="project-detail-bar-actions">
+      {hasGithub ? (
+        <a class="btn btn-ghost project-detail-github-btn" href={project.github} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          GitHub
+        </a>
+      ) : null}
+    </div>
+  </div>
+
+  {lead ? (
+  <div class="project-detail-lead">
+    <span class="tiny" style="font-weight:650; letter-spacing:0.06em; text-transform:uppercase; color:rgba(15,23,42,0.45);">{t(lang, "负责人", "Lead")}</span>
+    <span>{lead}</span>
+  </div>
+  ) : null}
+
+  <!-- Body -->
+  <section class="card prose project-detail-body">
+    {bodyHtml ? <div set:html={bodyHtml} /> : <div class="small muted">{t(lang, "暂无内容", "Nothing yet")}</div>}
+  </section>
+
+  <!-- Prev / Next -->
+  <div class="project-detail-nav">
+    {prevProject ? (
+      <a class="card project-detail-nav-link project-detail-nav-link--prev" href={langPath(lang, `/projects/${prevProject.id}/`)}>
+        <span class="tiny project-detail-nav-label">
+          <span aria-hidden="true">←</span> {t(lang, "上一个", "Previous")}
+        </span>
+        <span class="project-detail-nav-title">{prevProject.title?.[lang] ?? ""}</span>
+      </a>
+    ) : <div />}
+    {nextProject ? (
+      <a class="card project-detail-nav-link project-detail-nav-link--next" href={langPath(lang, `/projects/${nextProject.id}/`)}>
+        <span class="tiny project-detail-nav-label">
+          {t(lang, "下一个", "Next")} <span aria-hidden="true">→</span>
+        </span>
+        <span class="project-detail-nav-title">{nextProject.title?.[lang] ?? ""}</span>
+      </a>
+    ) : <div />}
+  </div>
+</BaseLayout>
